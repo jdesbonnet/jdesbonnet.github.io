@@ -1,0 +1,43 @@
+body {font-family: roboto;}
+    
+/* allow for <a> tags without href */
+a {cursor:pointer;};
+    
+	ul.left-menu {list-style-type:none;margin-left:0;padding:0;  list-style-position: inside;}
+	ul.left-menu li {list-style-type:none;margin:0;padding:0}
+	div.leftCol li {list-style-type:none;margin:0.8em;padding:0}
+	
+	
+.chart text {
+  fill: black;
+  font: 10px sans-serif;
+  text-anchor: middle;
+}
+
+.bar_re {fill: red;}
+.bar_im {fill: steelblue;}
+.lollipop_re {stroke: red; stroke-opacity:0.5; stroke-width:2px;}
+.lollipopc_re {fill: red;}
+
+.lollipop_im {stroke: steelblue; stroke-opacity:0.5; stroke-width:2px;}
+.lollipopc_im {fill: steelblue;}
+
+.bar:hover {
+  fill: brown;
+}
+
+.axis {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
