@@ -32,7 +32,7 @@ function makePS () {
 
 var ps = makePS();
 var dlEl = document.getElementById("downloadLink");
-dlEl.href="data:application/octet-stream,download=lined_paper.ps,charset=utf-8," 
+dlEl.href="data:application/octet-stream;charset=utf-8," 
    + encodeURIComponent(ps) ;
 
 dlEl.download="lined_paper.ps";
