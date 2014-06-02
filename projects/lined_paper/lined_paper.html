@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<script>
+
+function makePS () {
+  var ps = "";
+  var y;
+  for (var i = 0; i < 30; i++) {
+    y = i*25;
+    ps += "newpath\n";
+    ps += "0 " + y + " moveto\n";
+    ps += "800 " + y + " lineto\n";
+    ps += "0.1 setlinewidth\n";
+    ps += "stroke\n\n";
+  }
+
+  return ps;
+}
+
+</script>
+
+<body>
+
+<a id="downloadLink" href="#">lined_paper.ps</a>
+
+
+<script>
+
+var ps = makePS();
+var dlEl = document.getElementById("downloadLink");
+dlEl.href="data:application/octet-stream,download=lined_paper.ps,charset=utf-8," 
+   + encodeURIComponent(ps) ;
+
+dlEl.download="lined_paper.ps";
+
+
+</script>
+
+</body>
+</html>
+
+
