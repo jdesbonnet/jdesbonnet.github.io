@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>Watched Kettle</title>
+
+        <link rel="icon" type="image/png" href="favicon.png" />
+
+<script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+        <!-- JS FILES -->
+        <script src="libs/js/angular.min.js"></script>
+        <script src="libs/js/angular-resource.min.js"></script>
+        <script src="libs/js/angular-route.min.js"></script>
+        <script src="libs/js/ui-bootstrap-tpls.min.js"></script>
+
+        <script src="js/app.js"></script>
+	<script src="js/hwp-calc-ctrl.js"></script>
+        <script src="js/beep.js"></script>
+
+<style>
+.countdown-timer {
+    font-size: bigger;
+    font-weight: bold;
+}
+.form-table td {
+   padding:2px;
+}
+</style>
+
+</head>
+
+
+<body ng-app="hwpapp" ng-controller="hwpCalcCtrl">
+
+    <div class="navbar-wrapper">
+      <div class="container">
+        <navbar />
+      </div>
+    </div>
+
+
+          <div class="container">
+
+            <div class="container-fluid">
+
+              <div class="row" >
+
+<table class="form-table">
+
+<tr>
+<td><label>Kettle power rating (kW)</label></td>
+<td><input type="text" class="form-control" name="power" ng-model="power"/></td>
+</tr>
+
+<tr>
+<td><label>Volume of water (ml)</label></td>
+<td><input type="text" class="form-control" name="volume" ng-model="volume" /></td>
+</tr>
+
+<tr>
+<td><label>Start temperature (°C)</label></td>
+<td><input type="text" class="form-control" name="start_temperature" value="20" ng-model="start_temperature" /></td>
+</tr>
+
+<tr>
+<td><label>Target temperature (°C)</label></td>
+<td><input type="text" class="form-control" name="target_temperature" value="80" ng-model="target_temperature" /></td>
+</tr>
+
+<tr>
+<td><label>Time to apply power (seconds)</label></td>
+<td><input type="text" class="form-control" readonly  
+value="{{volume*4.200*(target_temperature-start_temperature) / (power*1000)}}" />
+</td>
+</tr>
+
+</table>
+
+<button class="btn btn-primary" ng-click="startCountdownTimer()">Start Timer</button>
+
+<table>
+<tr>
+<td>Time remaining:</td> <td><span class="countdown_timer">{{countdown_timer}}</span> seconds.</td></tr>
+<td>Water temperature:</td><td><span class="current_temperature">{{current_temperature}}</span>°C.</td></tr>
+</tr>
+</table>
+
+
+<svg id="thermometer" width="400" height="64">
+<rect x="0" y="0" width="400" height="32" stroke="black" fill="none" />
+<rect x="0" y="0" width="{{current_temperature*4}}" height="32" fill="red" />
+</svg>
+
+              </div>
+
+            </div><!-- end .container-fluid -->
+
+
+          </div><!-- end .container -->
+
+  <footer />
+
+  </body>
+</html>
