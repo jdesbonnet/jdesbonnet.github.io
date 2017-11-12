@@ -1,0 +1,16 @@
+<Summary>
+	<SuiteRevision>8671</SuiteRevision>
+	<SuiteRevisionDate>2016-02-18 13:58:57 -0800 (Thu, 18 Feb 2016)</SuiteRevisionDate>
+	<TestVersion>CVExe.exe ver 3.0.0.0</TestVersion>
+	<TestVersion>CommonToCVAndCVSettings.dll ver 3.0.0.0</TestVersion>
+	<TestVersion>CommandVerifierLog.dll ver 3.0.0.0</TestVersion>
+	<TestVersion>TSMFCGuiDialogHelperDLL.dll ver 3.0.0.0</TestVersion>
+	<TestVersion>TestUtilities.dll ver 3.0.0.0</TestVersion>
+	<TestVersion>TestSuiteEngine.dll ver 3.0.0.0</TestVersion>
+	<TestVersion>EhciDevIOCTL.dll ver 1.5.3.0</TestVersion>
+	<TestVersion>EhciTestServices.dll ver 1.5.3.0</TestVersion>
+	<TestVersion>USBUtilities.dll ver 1.4.5.1</TestVersion>
+	<TestVersion>StackSwitcher.dll ver 1.4.5.1</TestVersion>
+	<TestVersion>USBCommandVerifier.dll ver 1.5.3.0</TestVersion>
+	<TestVersion>USBVideoClassValidation.dll ver 1.5.3.0</TestVersion>
+</Summary>

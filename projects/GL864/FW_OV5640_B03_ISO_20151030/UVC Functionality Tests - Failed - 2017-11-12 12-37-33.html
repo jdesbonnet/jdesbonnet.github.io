@@ -1,0 +1,1590 @@
+<HTML><HEAD>
+	<META http-equiv="X-UA-Compatible" content="IE=edge" />
+	<META charset="UTF-8" />
+	<STYLE type='text/css'>
+		BODY { background-color: #DFDFDF; }
+		.dm_display
+		{
+		    color: Navy;
+		    font-family: monospace;
+		    background-color: White;
+		    border-width: 3px;
+		    border-style: outset;
+		}
+
+		#suite-output
+		{
+		    background-color: #FFFFDD;
+		    border: ridge 3px #FFFFDD;
+		    border-collapse: collapse;
+		    padding: 0;
+		    margin: 0;
+		    empty-cells: hide
+		}
+
+		#test-header
+		{
+		    font-weight: bold;
+		    font-size: large;
+		    border-top: ridge 2px #FFFFDD;
+		    border-bottom: ridge 2px #FFFFDD;
+		    padding: 0;
+		    margin: 0;
+		}
+
+		.test-pass, .test-fail
+		{
+		    float: right;
+		    border-left: ridge 2px #FFFDD;
+		    width: 6em;
+		}
+
+		.test-pass { background-color: #00FF00; }
+		.test-fail { background-color: #FF8888; }
+
+		.test-details
+		{
+		    clear: both;
+		    font-family: monospace;
+		    padding: 0;
+		    margin: 0;
+		    empty-cells: hide;
+		}
+
+		.label
+		{
+		    float: left;
+		    width: 6em;
+		}
+
+		.content
+		{
+		    white-space: pre-wrap;
+		    margin-left: 6em;
+		}
+
+		.err_log, .warn_log
+		{
+		    color: Red;
+		}
+
+		.err_log { font-weight: bold; }
+	</STYLE>
+	<TITLE>UVC Functionality Tests - 2017-11-12 12-37-33</TITLE>
+	<META name='Suite-Name' content='UVC Tests - Functionality.cvtests' />
+	<META name='Suite-Revision' content='8671' />
+	<META name='Suite-Revision-Date' content='2016-02-18 13:58:57 -0800 (Thu, 18 Feb 2016)' />
+	<META name='Test-Version' content='CVExe.exe ver 3.0.0.0' />
+	<META name='Test-Version' content='CommonToCVAndCVSettings.dll ver 3.0.0.0' />
+	<META name='Test-Version' content='CommandVerifierLog.dll ver 3.0.0.0' />
+	<META name='Test-Version' content='TSMFCGuiDialogHelperDLL.dll ver 3.0.0.0' />
+	<META name='Test-Version' content='TestUtilities.dll ver 3.0.0.0' />
+	<META name='Test-Version' content='TestSuiteEngine.dll ver 3.0.0.0' />
+	<META name='Test-Version' content='EhciDevIOCTL.dll ver 1.5.3.0' />
+	<META name='Test-Version' content='EhciTestServices.dll ver 1.5.3.0' />
+	<META name='Test-Version' content='USBUtilities.dll ver 1.4.5.1' />
+	<META name='Test-Version' content='StackSwitcher.dll ver 1.4.5.1' />
+	<META name='Test-Version' content='USBCommandVerifier.dll ver 1.5.3.0' />
+	<META name='Test-Version' content='USBVideoClassValidation.dll ver 1.5.3.0' />
+	<META name='Device-Under-Test' content='VID=05E3,PID=0510' />
+	<META name='Test-Pass' content=' Scanning Mode Control Test Video (Configuration Index 0) [Fails (0); Aborts (0); Warnings (0)]' />
+	<META name='Test-Fail' content=' Auto-Exposure Mode Control Test Video (Configuration Index 0) [Fails (7); Aborts (0); Warnings (0)]' />
+	<META name='Test-Pass' content=' Auto-Exposure Priority Control Test Video (Configuration Index 0) [Fails (0); Aborts (0); Warnings (0)]' />
+	<META name='Test-Fail' content=' Exposure Time (Absolute) Control Test Video (Configuration Index 0) [Fails (7); Aborts (0); Warnings (0)]' />
+	<META name='Test-Pass' content=' Exposure Time (Relative) Control Test Video (Configuration Index 0) [Fails (0); Aborts (0); Warnings (0)]' />
+	<META name='Test-Pass' content=' Iris (Absolute) Control Test Video (Configuration Index 0) [Fails (0); Aborts (0); Warnings (0)]' />
+	<META name='Test-Pass' content=' Iris (Relative) Control Test Video (Configuration Index 0) [Fails (0); Aborts (0); Warnings (0)]' />
+	<META name='Test-Pass' content=' Focus (Absolute) Control Test Video (Configuration Index 0) [Fails (0); Aborts (0); Warnings (0)]' />
+	<META name='Test-Pass' content=' Focus (Relative) Control Test Video (Configuration Index 0) [Fails (0); Aborts (0); Warnings (0)]' />
+	<META name='Test-Pass' content=' Focus (Relative) Control Test Video (Configuration Index 0) [Fails (0); Aborts (0); Warnings (0)]' />
+	<META name='Test-Pass' content=' Zoom (Absolute) Control Test Video (Configuration Index 0) [Fails (0); Aborts (0); Warnings (0)]' />
+	<META name='Test-Pass' content=' Zoom (Relative) Control Test Video (Configuration Index 0) [Fails (0); Aborts (0); Warnings (0)]' />
+	<META name='Test-Pass' content=' Roll (Absolute) Control Test Video (Configuration Index 0) [Fails (0); Aborts (0); Warnings (0)]' />
+	<META name='Test-Pass' content=' Roll (Relative) Control Test Video (Configuration Index 0) [Fails (0); Aborts (0); Warnings (0)]' />
+	<META name='Test-Pass' content=' PanTilt(Absolute) Control Test Video (Configuration Index 0) [Fails (0); Aborts (0); Warnings (0)]' />
+	<META name='Test-Pass' content=' PanTilt (Relative) Control Test Video (Configuration Index 0) [Fails (0); Aborts (0); Warnings (0)]' />
+	<META name='Test-Pass' content=' Privacy Control Test Video (Configuration Index 0) [Fails (0); Aborts (0); Warnings (0)]' />
+	<META name='Test-Fail' content=' Backlight Compensation Control Test Video (Configuration Index 0) [Fails (8); Aborts (0); Warnings (0)]' />
+	<META name='Test-Fail' content=' Brightness Control Test Video (Configuration Index 0) [Fails (8); Aborts (0); Warnings (0)]' />
+	<META name='Test-Pass' content=' Analog Video Standard Control Test Video (Configuration Index 0) [Fails (0); Aborts (0); Warnings (0)]' />
+	<META name='Test-Pass' content=' Analog Video Lock Status Control Test Video (Configuration Index 0) [Fails (0); Aborts (0); Warnings (0)]' />
+	<META name='Test-Fail' content=' Contrast Control Test Video (Configuration Index 0) [Fails (8); Aborts (0); Warnings (0)]' />
+	<META name='Test-Fail' content=' Gain Control Test Video (Configuration Index 0) [Fails (8); Aborts (0); Warnings (0)]' />
+	<META name='Test-Fail' content=' Power Line Frequency Control Test Video (Configuration Index 0) [Fails (8); Aborts (0); Warnings (0)]' />
+	<META name='Test-Fail' content=' Hue Control Test Video (Configuration Index 0) [Fails (7); Aborts (0); Warnings (0)]' />
+	<META name='Test-Pass' content=' Hue Auto Control Test Video (Configuration Index 0) [Fails (0); Aborts (0); Warnings (0)]' />
+	<META name='Test-Fail' content=' Saturation Control Test Video (Configuration Index 0) [Fails (8); Aborts (0); Warnings (0)]' />
+	<META name='Test-Fail' content=' Sharpness Control Test Video (Configuration Index 0) [Fails (8); Aborts (0); Warnings (0)]' />
+	<META name='Test-Fail' content=' Gamma Control Test Video (Configuration Index 0) [Fails (8); Aborts (0); Warnings (0)]' />
+	<META name='Test-Fail' content=' White Balance Temperature Control Test Video (Configuration Index 0) [Fails (7); Aborts (0); Warnings (2)]' />
+	<META name='Test-Fail' content=' White Balance Temperature Auto Control Test Video (Configuration Index 0) [Fails (7); Aborts (0); Warnings (0)]' />
+	<META name='Test-Pass' content=' White Balance Component Control Test Video (Configuration Index 0) [Fails (0); Aborts (0); Warnings (0)]' />
+	<META name='Test-Pass' content=' White Balance Component Auto Control Test Video (Configuration Index 0) [Fails (0); Aborts (0); Warnings (0)]' />
+	<META name='Test-Pass' content=' Digital Multiplier Control Test Video (Configuration Index 0) [Fails (0); Aborts (0); Warnings (0)]' />
+	<META name='Test-Pass' content=' Digital Multiplier Limit Control Test Video (Configuration Index 0) [Fails (0); Aborts (0); Warnings (0)]' />
+	<META name='Test-Pass' content=' Media Transport Terminal: Transport Control Test Video (Configuration Index 0) [Fails (0); Aborts (0); Warnings (0)]' />
+	<META name='Test-Pass' content=' Media Transport Terminal: Absolute Track Number Control Test Video (Configuration Index 0) [Fails (0); Aborts (0); Warnings (0)]' />
+	<META name='Test-Pass' content=' Media Transport Terminal: Media Information Control Test Video (Configuration Index 0) [Fails (0); Aborts (0); Warnings (0)]' />
+	<META name='Test-Pass' content=' Media Transport Terminal: Time Code Information Control Test Video (Configuration Index 0) [Fails (0); Aborts (0); Warnings (0)]' />
+	<META name='Suite-Result' content='FAIL [Fails (99); Aborts (0); Warnings (2)]' />
+	<META name='Log-Name' content='UVC Functionality Tests - 2017-11-12 12-37-33.html' />
+	<META name='Test-Count' content='39' />
+</HEAD>
+<BODY><DIV id='suite-summary'>
+	<STRONG>TEST SUITE: </STRONG> UVC Tests - Functionality.cvtests<BR>
+	<STRONG>REVISION: </STRONG> 8671<BR>
+	<STRONG>REVISION DATE: </STRONG> 2016-02-18 13:58:57 -0800 (Thu, 18 Feb 2016)<BR>
+	<STRONG>OPERATING SYSTEM: </STRONG> Windows 10 Pro (Build 15063.0.x86fre.rs2_release.170317-1834)<BR>
+	<STRONG>WORKSTATION: </STRONG> <BR>
+	<STRONG>DATE: </STRONG> Sunday, November 12, 2017<BR>
+	<STRONG>TIME: </STRONG> 12:39:38 PM<BR>
+	<STRONG>OPERATOR: </STRONG> aoife<BR>
+	<STRONG>NUMBER OF TESTS: </STRONG> 39<BR>
+	<STRONG>LOG NAME: </STRONG> UVC Functionality Tests - 2017-11-12 12-37-33<BR>
+	<STRONG>RESULT: </STRONG> <A href='#anchor_5'>failed</A><BR>
+<HR>
+</DIV>
+<BR><BR>
+<DIV id='suite-output'>
+<DIV id='test-header'>InitializeTestSuite</DIV>
+<DIV class='test-details'>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Test log initialized.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Log Level: Normal</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>User Input module initialized</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Windows 10 Pro (Build 15063.0.x86fre.rs2_release.170317-1834)</DIV></DIV>
+<DIV style='color:#00005F'><DIV class='label'>INFO</DIV><DIV class='content'>CVExe.exe ver 3.0.0.0</DIV></DIV>
+<DIV style='color:#00005F'><DIV class='label'>INFO</DIV><DIV class='content'>CommonToCVAndCVSettings.dll ver 3.0.0.0</DIV></DIV>
+<DIV style='color:#00005F'><DIV class='label'>INFO</DIV><DIV class='content'>CommandVerifierLog.dll ver 3.0.0.0</DIV></DIV>
+<DIV style='color:#00005F'><DIV class='label'>INFO</DIV><DIV class='content'>TSMFCGuiDialogHelperDLL.dll ver 3.0.0.0</DIV></DIV>
+<DIV style='color:#00005F'><DIV class='label'>INFO</DIV><DIV class='content'>TestUtilities.dll ver 3.0.0.0</DIV></DIV>
+<DIV style='color:#00005F'><DIV class='label'>INFO</DIV><DIV class='content'>TestSuiteEngine.dll ver 3.0.0.0</DIV></DIV>
+<DIV style='color:#00005F'><DIV class='label'>INFO</DIV><DIV class='content'>EhciDevIOCTL.dll ver 1.5.3.0</DIV></DIV>
+<DIV style='color:#00005F'><DIV class='label'>INFO</DIV><DIV class='content'>EhciTestServices.dll ver 1.5.3.0</DIV></DIV>
+<DIV style='color:#00005F'><DIV class='label'>INFO</DIV><DIV class='content'>USBUtilities.dll ver 1.4.5.1</DIV></DIV>
+<DIV style='color:#00005F'><DIV class='label'>INFO</DIV><DIV class='content'>StackSwitcher.dll ver 1.4.5.1</DIV></DIV>
+<DIV style='color:#00005F'><DIV class='label'>INFO</DIV><DIV class='content'>USBCommandVerifier.dll ver 1.5.3.0</DIV></DIV>
+<DIV style='color:#00005F'><DIV class='label'>INFO</DIV><DIV class='content'>USBVideoClassValidation.dll ver 1.5.3.0</DIV></DIV>
+<DIV style='font-weight: bold;color:#00007F'><DIV class='label'>INFO</DIV><DIV class='content'>Host selected: PCI bus 0, device 29, function 7</DIV></DIV>
+<DIV style='font-weight: bold;color:#00007F'><DIV class='label'>INFO</DIV><DIV class='content'>DUT selected: HS  Device (UVC) addr=3:   VID=05e3, PID=0510</DIV></DIV>
+</DIV>
+<DIV id='test-header'>Get Number Of Configurations</DIV>
+<DIV class='test-details'>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Number of configurations: 1</DIV></DIV>
+</DIV>
+<DIV id='test-header'>Get Number Of Other Speed Configurations</DIV>
+<DIV class='test-details'>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Number of Other Speed configurations: 1</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_4'> Scanning Mode Control Test Video (Configuration Index 0)</A><DIV class='test-pass'>Passed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:38:18 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Scanning Mode Control is not supported.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:38:20 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  Scanning Mode Control Test Video (Configuration Index 0):
+     Number of: Fails (0); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_5'><A href='#anchor_7'> Auto-Exposure Mode Control Test Video (Configuration Index 0)</A></A><DIV class='test-fail'>Failed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:38:20 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Auto-Exposure Mode Control is supported, so beginning tests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>The expected Auto-Exposure Mode Control is missing.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.4) An expected Video Control is missing (in Interface / Unit / Terminal).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Supported Modes : 0000 0000 (0x00).</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>The expected Auto-Exposure Mode Control is missing.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.4) An expected Video Control is missing (in Interface / Unit / Terminal).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : SET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_MIN.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the request : GET_MIN but the Request Error Code Control does not answer invalid request.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_MAX.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the request : GET_MAX but the Request Error Code Control does not answer invalid request.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_RES.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_LEN.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the request : GET_LEN but the Request Error Code Control does not answer invalid request.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_INFO.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_DEF.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>The Control does not support all mandatory requests</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The data returned by the request have a correct size.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>GET_INFO does not match supported Requests</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.6) Video Control GET_INFO does not match actual supported requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : SET_CUR.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06 (invalid control).</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>The Control does not support GET_DEF request.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>The Control reported an invalid RES value.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.13) Video Control RES is invalid.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>
+Testing Invalid Auto-Exposure Mode settings.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Trying invalid mode : 0x00.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Trying invalid mode : 0x03.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Trying invalid mode : 0x05.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Trying invalid mode : 0x06.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Trying invalid mode : 0x07.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Trying invalid mode : 0x10.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>
+Manual mode not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06 (invalid control).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>
+Auto Mode not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06 (invalid control).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>
+Shutter Priority Mode not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06 (invalid control).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>
+Aperture Priority Mode not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06 (invalid control).</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:38:23 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  3 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  Auto-Exposure Mode Control Test Video (Configuration Index 0):
+     Number of: Fails (7); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_6'> Auto-Exposure Priority Control Test Video (Configuration Index 0)</A><DIV class='test-pass'>Passed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:38:23 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Auto-Exposure Priority Control is not supported.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:38:25 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  Auto-Exposure Priority Control Test Video (Configuration Index 0):
+     Number of: Fails (0); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_7'><A href='#anchor_21'> Exposure Time (Absolute) Control Test Video (Configuration Index 0)</A></A><DIV class='test-fail'>Failed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:38:25 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Exposure Time (Absolute) Control is supported, so beginning tests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>The expected Exposure Time (Absolute) Control is missing.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.4) An expected Video Control is missing (in Interface / Unit / Terminal).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the optional request : SET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_MIN.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_MAX.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_RES.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_LEN.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the request : GET_LEN but the Request Error Code Control does not answer invalid request.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_INFO.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_DEF.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>The Control does not support all mandatory requests</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The data returned by the request have a correct size.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>GET_INFO does not match supported Requests</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.6) Video Control GET_INFO does not match actual supported requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_MIN.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_MAX.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_DEF.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_RES.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:38:27 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  Exposure Time (Absolute) Control Test Video (Configuration Index 0):
+     Number of: Fails (7); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_8'> Exposure Time (Relative) Control Test Video (Configuration Index 0)</A><DIV class='test-pass'>Passed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:38:27 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Exposure Time (Relative) Control is not supported.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:38:29 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  Exposure Time (Relative) Control Test Video (Configuration Index 0):
+     Number of: Fails (0); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_9'> Iris (Absolute) Control Test Video (Configuration Index 0)</A><DIV class='test-pass'>Passed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:38:29 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Iris (Absolute) Control is not supported.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:38:31 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  Iris (Absolute) Control Test Video (Configuration Index 0):
+     Number of: Fails (0); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_10'> Iris (Relative) Control Test Video (Configuration Index 0)</A><DIV class='test-pass'>Passed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:38:31 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Iris (Relative) Control is not supported.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:38:33 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  Iris (Relative) Control Test Video (Configuration Index 0):
+     Number of: Fails (0); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_11'> Focus (Absolute) Control Test Video (Configuration Index 0)</A><DIV class='test-pass'>Passed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:38:33 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Focus (Absolute) Control is not supported.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:38:35 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  Focus (Absolute) Control Test Video (Configuration Index 0):
+     Number of: Fails (0); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_12'> Focus (Relative) Control Test Video (Configuration Index 0)</A><DIV class='test-pass'>Passed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:38:35 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Focus (Relative) Control is not supported.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:38:37 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  Focus (Relative) Control Test Video (Configuration Index 0):
+     Number of: Fails (0); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_13'> Focus (Relative) Control Test Video (Configuration Index 0)</A><DIV class='test-pass'>Passed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:38:37 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Focus (Relative) Control is not supported.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:38:39 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  Focus (Relative) Control Test Video (Configuration Index 0):
+     Number of: Fails (0); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_14'> Zoom (Absolute) Control Test Video (Configuration Index 0)</A><DIV class='test-pass'>Passed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:38:39 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Zoom (Absolute) Control is not supported.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:38:41 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  Zoom (Absolute) Control Test Video (Configuration Index 0):
+     Number of: Fails (0); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_15'> Zoom (Relative) Control Test Video (Configuration Index 0)</A><DIV class='test-pass'>Passed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:38:41 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Zoom (Relative) Control is not supported.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:38:43 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  Zoom (Relative) Control Test Video (Configuration Index 0):
+     Number of: Fails (0); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_16'> Roll (Absolute) Control Test Video (Configuration Index 0)</A><DIV class='test-pass'>Passed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:38:43 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Roll (Absolute) Control is not supported.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:38:45 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  Roll (Absolute) Control Test Video (Configuration Index 0):
+     Number of: Fails (0); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_17'> Roll (Relative) Control Test Video (Configuration Index 0)</A><DIV class='test-pass'>Passed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:38:45 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Focus (Relative) Control is not supported.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:38:47 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  Roll (Relative) Control Test Video (Configuration Index 0):
+     Number of: Fails (0); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_18'> PanTilt(Absolute) Control Test Video (Configuration Index 0)</A><DIV class='test-pass'>Passed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:38:47 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Pan Tilt (Absolute) Control is not supported.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:38:49 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  PanTilt(Absolute) Control Test Video (Configuration Index 0):
+     Number of: Fails (0); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_19'> PanTilt (Relative) Control Test Video (Configuration Index 0)</A><DIV class='test-pass'>Passed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:38:49 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Focus (Relative) Control is not supported.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:38:51 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  PanTilt (Relative) Control Test Video (Configuration Index 0):
+     Number of: Fails (0); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_20'> Privacy Control Test Video (Configuration Index 0)</A><DIV class='test-pass'>Passed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:38:51 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Privacy Control is not supported.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:38:53 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  Privacy Control Test Video (Configuration Index 0):
+     Number of: Fails (0); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_21'><A href='#anchor_22'> Backlight Compensation Control Test Video (Configuration Index 0)</A></A><DIV class='test-fail'>Failed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:38:53 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Backlight Compensation Control is supported, so beginning tests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>The expected BackLight Compensation Control is missing.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.4) An expected Video Control is missing (in Interface / Unit / Terminal).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : SET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_MIN.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_MAX.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_RES.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_LEN.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the request : GET_LEN but the Request Error Code Control does not answer invalid request.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_INFO.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_DEF.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>The Control does not support all mandatory requests</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The data returned by the request have a correct size.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>GET_INFO does not match supported Requests</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.6) Video Control GET_INFO does not match actual supported requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : SET_CUR.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_MIN.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_MAX.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_DEF.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_RES.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control we try to set the value : 0x1 (invalid).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control we try to set the value : 0x7FFF (invalid).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control we try to set the value : 0xFFFF8000 (invalid).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control we try to set the value : 0xFFFFFFFF (invalid).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:38:55 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  Backlight Compensation Control Test Video (Configuration Index 0):
+     Number of: Fails (8); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_22'><A href='#anchor_25'> Brightness Control Test Video (Configuration Index 0)</A></A><DIV class='test-fail'>Failed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:38:55 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Brightness Control is supported, so beginning tests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>The expected Brightness Control is missing.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.4) An expected Video Control is missing (in Interface / Unit / Terminal).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : SET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_MIN.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_MAX.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_RES.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_LEN.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the request : GET_LEN but the Request Error Code Control does not answer invalid request.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_INFO.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_DEF.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>The Control does not support all mandatory requests</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The data returned by the request have a correct size.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>GET_INFO does not match supported Requests</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.6) Video Control GET_INFO does not match actual supported requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : SET_CUR.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_MIN.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_MAX.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_DEF.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_RES.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control we try to set the value : 0x1 (invalid).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control we try to set the value : 0x7FFF (invalid).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control we try to set the value : 0xFFFF8000 (invalid).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control we try to set the value : 0xFFFFFFFF (invalid).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:38:57 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  Brightness Control Test Video (Configuration Index 0):
+     Number of: Fails (8); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_23'> Analog Video Standard Control Test Video (Configuration Index 0)</A><DIV class='test-pass'>Passed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:38:57 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>ANALOG_VIDEO_STANDARD_CONTROL Control is not supported.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:38:59 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  Analog Video Standard Control Test Video (Configuration Index 0):
+     Number of: Fails (0); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_24'> Analog Video Lock Status Control Test Video (Configuration Index 0)</A><DIV class='test-pass'>Passed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:38:59 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>ANALOG_LOCK_STATUS_CONTROL Control is not supported.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:39:01 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  Analog Video Lock Status Control Test Video (Configuration Index 0):
+     Number of: Fails (0); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_25'><A href='#anchor_26'> Contrast Control Test Video (Configuration Index 0)</A></A><DIV class='test-fail'>Failed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:39:01 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>CONTRAST Control is supported, so beginning tests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>The expected control CONTRAST is missing.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.4) An expected Video Control is missing (in Interface / Unit / Terminal).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : SET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_MIN.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_MAX.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_RES.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_LEN.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the request : GET_LEN but the Request Error Code Control does not answer invalid request.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_INFO.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_DEF.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>The Control does not support all mandatory requests</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The data returned by the request have a correct size.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>GET_INFO does not match supported Requests</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.6) Video Control GET_INFO does not match actual supported requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : SET_CUR.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_MIN.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_MAX.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_DEF.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_RES.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control we try to set the value : 0x1 (invalid).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control we try to set the value : 0x7FFF (invalid).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control we try to set the value : 0xFFFF8000 (invalid).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control we try to set the value : 0xFFFFFFFF (invalid).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:39:03 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  Contrast Control Test Video (Configuration Index 0):
+     Number of: Fails (8); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_26'><A href='#anchor_27'> Gain Control Test Video (Configuration Index 0)</A></A><DIV class='test-fail'>Failed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:39:03 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>GAIN Control is supported, so beginning tests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>The expected control GAIN is missing.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.4) An expected Video Control is missing (in Interface / Unit / Terminal).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : SET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_MIN.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_MAX.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_RES.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_LEN.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the request : GET_LEN but the Request Error Code Control does not answer invalid request.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_INFO.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_DEF.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>The Control does not support all mandatory requests</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The data returned by the request have a correct size.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>GET_INFO does not match supported Requests</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.6) Video Control GET_INFO does not match actual supported requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : SET_CUR.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_MIN.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_MAX.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_DEF.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_RES.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control we try to set the value : 0x1 (invalid).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control we try to set the value : 0x7FFF (invalid).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control we try to set the value : 0xFFFF8000 (invalid).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control we try to set the value : 0xFFFFFFFF (invalid).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:39:05 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  Gain Control Test Video (Configuration Index 0):
+     Number of: Fails (8); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_27'><A href='#anchor_28'> Power Line Frequency Control Test Video (Configuration Index 0)</A></A><DIV class='test-fail'>Failed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:39:05 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Power Line Frequency Control is supported, so beginning tests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>The expected control Power Line Frequency is missing.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.4) An expected Video Control is missing (in Interface / Unit / Terminal).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : SET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_MIN.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the request : GET_MIN but the Request Error Code Control does not answer invalid request.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_MAX.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the request : GET_MAX but the Request Error Code Control does not answer invalid request.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_RES.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the request : GET_RES but the Request Error Code Control does not answer invalid request.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_LEN.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the request : GET_LEN but the Request Error Code Control does not answer invalid request.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_INFO.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_DEF.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>The Control does not support all mandatory requests</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The data returned by the request have a correct size.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>GET_INFO does not match supported Requests</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.6) Video Control GET_INFO does not match actual supported requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : SET_CUR.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_DEF.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>SET_CUR did not succeed with valid values.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.22.43) Power Line Frequency Control SET_CUR did not succeed with valid value (&lt;3)</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>SET_CUR did not succeed with valid values.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.22.43) Power Line Frequency Control SET_CUR did not succeed with valid value (&lt;3)</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>SET_CUR did not succeed with valid values.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.22.43) Power Line Frequency Control SET_CUR did not succeed with valid value (&lt;3)</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:39:07 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  Power Line Frequency Control Test Video (Configuration Index 0):
+     Number of: Fails (8); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_28'><A href='#anchor_30'> Hue Control Test Video (Configuration Index 0)</A></A><DIV class='test-fail'>Failed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:39:07 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Hue Control is supported, so beginning tests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Hue Control is not able to be set in Manual Mode or Auto Mode, Hue Auto Control is not supported</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>The expected control HUE is missing.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.4) An expected Video Control is missing (in Interface / Unit / Terminal).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the optional request : SET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_MIN.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_MAX.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_RES.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_LEN.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the request : GET_LEN but the Request Error Code Control does not answer invalid request.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_INFO.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_DEF.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>The Control does not support all mandatory requests</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The data returned by the request have a correct size.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>GET_INFO does not match supported Requests</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.6) Video Control GET_INFO does not match actual supported requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_MIN.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_MAX.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_DEF.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_RES.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:39:09 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  Hue Control Test Video (Configuration Index 0):
+     Number of: Fails (7); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_29'> Hue Auto Control Test Video (Configuration Index 0)</A><DIV class='test-pass'>Passed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:39:10 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Hue Auto Control is not supported.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:39:11 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  1 second.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  Hue Auto Control Test Video (Configuration Index 0):
+     Number of: Fails (0); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_30'><A href='#anchor_31'> Saturation Control Test Video (Configuration Index 0)</A></A><DIV class='test-fail'>Failed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:39:12 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>SATURATION Control is supported, so beginning tests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>The expected control SATURATION is missing.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.4) An expected Video Control is missing (in Interface / Unit / Terminal).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : SET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_MIN.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_MAX.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_RES.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_LEN.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the request : GET_LEN but the Request Error Code Control does not answer invalid request.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_INFO.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_DEF.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>The Control does not support all mandatory requests</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The data returned by the request have a correct size.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>GET_INFO does not match supported Requests</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.6) Video Control GET_INFO does not match actual supported requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : SET_CUR.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_MIN.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_MAX.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_DEF.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_RES.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control we try to set the value : 0x1 (invalid).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control we try to set the value : 0x7FFF (invalid).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control we try to set the value : 0xFFFF8000 (invalid).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control we try to set the value : 0xFFFFFFFF (invalid).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:39:14 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  Saturation Control Test Video (Configuration Index 0):
+     Number of: Fails (8); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_31'><A href='#anchor_32'> Sharpness Control Test Video (Configuration Index 0)</A></A><DIV class='test-fail'>Failed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:39:14 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>SHARPNESS Control is supported, so beginning tests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>The expected control SHARPNESS is missing.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.4) An expected Video Control is missing (in Interface / Unit / Terminal).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : SET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_MIN.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_MAX.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_RES.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_LEN.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the request : GET_LEN but the Request Error Code Control does not answer invalid request.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_INFO.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_DEF.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>The Control does not support all mandatory requests</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The data returned by the request have a correct size.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>GET_INFO does not match supported Requests</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.6) Video Control GET_INFO does not match actual supported requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : SET_CUR.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_MIN.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_MAX.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_DEF.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_RES.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control we try to set the value : 0x1 (invalid).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control we try to set the value : 0x7FFF (invalid).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control we try to set the value : 0xFFFF8000 (invalid).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control we try to set the value : 0xFFFFFFFF (invalid).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:39:16 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  Sharpness Control Test Video (Configuration Index 0):
+     Number of: Fails (8); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_32'><A href='#anchor_33'> Gamma Control Test Video (Configuration Index 0)</A></A><DIV class='test-fail'>Failed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:39:16 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>GAMMA Control is supported, so beginning tests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>The expected control GAMMA is missing.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.4) An expected Video Control is missing (in Interface / Unit / Terminal).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : SET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_MIN.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_MAX.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_RES.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_LEN.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the request : GET_LEN but the Request Error Code Control does not answer invalid request.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_INFO.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_DEF.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>The Control does not support all mandatory requests</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The data returned by the request have a correct size.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>GET_INFO does not match supported Requests</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.6) Video Control GET_INFO does not match actual supported requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : SET_CUR.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_MIN.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_MAX.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_DEF.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_RES.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control we try to set the value : 0x1 (invalid).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control we try to set the value : 0x7FFF (invalid).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control we try to set the value : 0xFFFF8000 (invalid).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control we try to set the value : 0xFFFFFFFF (invalid).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:39:18 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  Gamma Control Test Video (Configuration Index 0):
+     Number of: Fails (8); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_33'><A href='#anchor_34'> White Balance Temperature Control Test Video (Configuration Index 0)</A></A><DIV class='test-fail'>Failed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:39:18 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>White Balance Temperature Control is supported, so beginning tests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>The expected control White Balance Temperature is missing.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.4) An expected Video Control is missing (in Interface / Unit / Terminal).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the optional request : SET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_MIN.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_MAX.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_RES.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_LEN.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the request : GET_LEN but the Request Error Code Control does not answer invalid request.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_INFO.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_DEF.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>The Control does not support all mandatory requests</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The data returned by the request have a correct size.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>GET_INFO does not match supported Requests</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.6) Video Control GET_INFO does not match actual supported requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_MIN.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_MAX.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_DEF.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_RES.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='warn_log'><DIV class='label'>WARNING</DIV><DIV class='content'>The Control has max value less than 6500.</DIV></DIV>
+<DIV class='warn_log'><DIV class='label'>WARNING</DIV><DIV class='content'>(6.22.101) White Balance Temperature Control GET_MAX for wWhiteBalanceTemperature is out-of-bound. </DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:39:20 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  White Balance Temperature Control Test Video (Configuration Index 0):
+     Number of: Fails (7); Aborts (0); Warnings (2) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_34'> White Balance Temperature Auto Control Test Video (Configuration Index 0)</A><DIV class='test-fail'>Failed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:39:20 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>WHITE BALANCE TEMPERATURE AUTO Control is supported, so beginning tests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>The expected control WHITE BALANCE TEMPERATURE AUTO is missing.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.4) An expected Video Control is missing (in Interface / Unit / Terminal).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : SET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_MIN.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the request : GET_MIN but the Request Error Code Control does not answer invalid request.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_MAX.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the request : GET_MAX but the Request Error Code Control does not answer invalid request.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_RES.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the request : GET_RES but the Request Error Code Control does not answer invalid request.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_LEN.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the request : GET_LEN but the Request Error Code Control does not answer invalid request.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_INFO.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory request : GET_DEF.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>The Control does not support all mandatory requests</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The data returned by the request have a correct size.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>GET_INFO does not match supported Requests</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.6) Video Control GET_INFO does not match actual supported requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control GET_INFO is not supported.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 6.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : SET_CUR.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>Video Control does not support the mandatory Request : GET_DEF.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.20.7) Video Control does not support all mandatory requests.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The SET_CUR Request did not succeed.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The Video Control answered STALL to the Request with Request Error Code : 0x06 (invalid control).</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>White Balance Temperature Auto control : GET_CUR failed. Error=0x80004008.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Setting WHITE TEMPERATURE BALANCE AUTO control to 1.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>SET_CUR did not Succeed with a valid value 1 (GET_CUR Reported Bogus value).</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.22.114) SET_CUR did not Succeed with a valid value (GET_CUR Reported Bogus value). </DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Setting WHITE TEMPERATURE BALANCE AUTO control to 0.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control : the Request Error Code Control returned : 0x06.</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>ERROR</DIV><DIV class='content'>SET_CUR did not Succeed with a valid value 0 (GET_CUR Reported Bogus value).</DIV></DIV>
+<DIV class='err_log'><DIV class='label'>FAIL</DIV><DIV class='content'>(6.22.114) SET_CUR did not Succeed with a valid value (GET_CUR Reported Bogus value). </DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:39:22 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  White Balance Temperature Auto Control Test Video (Configuration Index 0):
+     Number of: Fails (7); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_35'> White Balance Component Control Test Video (Configuration Index 0)</A><DIV class='test-pass'>Passed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:39:22 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>White Balance Component Control is not supported.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:39:24 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  White Balance Component Control Test Video (Configuration Index 0):
+     Number of: Fails (0); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_36'> White Balance Component Auto Control Test Video (Configuration Index 0)</A><DIV class='test-pass'>Passed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:39:24 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The White Balance Component Auto Control is not supported.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:39:26 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  White Balance Component Auto Control Test Video (Configuration Index 0):
+     Number of: Fails (0); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_37'> Digital Multiplier Control Test Video (Configuration Index 0)</A><DIV class='test-pass'>Passed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:39:26 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Digital multiplier Control is not supported.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:39:28 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  Digital Multiplier Control Test Video (Configuration Index 0):
+     Number of: Fails (0); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_38'> Digital Multiplier Limit Control Test Video (Configuration Index 0)</A><DIV class='test-pass'>Passed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:39:28 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Video Control does not support the request : GET_CUR.</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Digital Multiplier Limit Control is not supported.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:39:30 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  Digital Multiplier Limit Control Test Video (Configuration Index 0):
+     Number of: Fails (0); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_39'> Media Transport Terminal: Transport Control Test Video (Configuration Index 0)</A><DIV class='test-pass'>Passed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:39:30 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>We do not have any Media Transport Terminal Descriptor.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:39:32 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  Media Transport Terminal: Transport Control Test Video (Configuration Index 0):
+     Number of: Fails (0); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_40'> Media Transport Terminal: Absolute Track Number Control Test Video (Configuration Index 0)</A><DIV class='test-pass'>Passed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:39:32 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>We do not have any Media Transport Terminal Descriptor.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:39:34 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  Media Transport Terminal: Absolute Track Number Control Test Video (Configuration Index 0):
+     Number of: Fails (0); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_41'> Media Transport Terminal: Media Information Control Test Video (Configuration Index 0)</A><DIV class='test-pass'>Passed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:39:34 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>We do not have any Media Transport Terminal Descriptor.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:39:36 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  Media Transport Terminal: Media Information Control Test Video (Configuration Index 0):
+     Number of: Fails (0); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'><A  name='anchor_42'> Media Transport Terminal: Time Code Information Control Test Video (Configuration Index 0)</A><DIV class='test-pass'>Passed</DIV></DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#0000AA'><DIV class='label'>INFO</DIV><DIV class='content'>Start time: Sun Nov 12 12:39:36 2017
+</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Configuring device, Set Configuration to 1</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Default State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>The device is in its Addressed State</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>Getting Full Configuration Descriptor</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>----------------------------------------</DIV></DIV>
+<DIV><DIV class='label'>INFO</DIV><DIV class='content'>We do not have any Media Transport Terminal Descriptor.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>
+Stop time: Sun Nov 12 12:39:38 2017</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Duration:  2 seconds.</DIV></DIV>
+<DIV style='font-weight: bold;color:#007F00'><DIV class='label'>INFO</DIV><DIV class='content'>Stopping Test [  Media Transport Terminal: Time Code Information Control Test Video (Configuration Index 0):
+     Number of: Fails (0); Aborts (0); Warnings (0) ]
+</DIV></DIV>
+</DIV>
+<DIV id='test-header'>Summary</DIV>
+<DIV class='test-details'>
+<DIV style='font-weight: bold;font-style:italic;color:#BF0000'><DIV class='label'>INFO</DIV><DIV class='content'>Summary Log Counts [ Fails (99); Aborts (0); Warnings (2) ]</DIV></DIV>
+</DIV>
+</DIV>
+</BODY></HTML>
