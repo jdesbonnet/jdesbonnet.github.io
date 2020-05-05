@@ -1,4 +1,4 @@
-### Stuff I've got on GitHub
+### (experimeting with GitHib templates)
 
 
 * My technology blog: http://jdesbonnet.blogspot.ie
@@ -13,3 +13,4 @@
 * Script that turns music into scrolling 'waterfall' frequency plot: https://www.youtube.com/watch?v=utp95bprqeg
 * Galway Harbor webcam with tide gauge and sun/moon/Venus position overlay: https://www.youtube.com/watch?v=myQoCMbS1u8
 * Little fourer transform visual tool: http://jdesbonnet.github.io/projects/dsp/fourier.html#/pages
+* Lidl smoke alarm teardown: https://www.youtube.com/watch?v=bKjLuIVWbms
