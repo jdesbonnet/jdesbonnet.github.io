@@ -1,0 +1,8 @@
+title: Joe Desbonnet's GitHub Page
+description: 
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-slate
+
+gems:
+  - jekyll-mentions
