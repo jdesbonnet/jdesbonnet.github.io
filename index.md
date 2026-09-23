@@ -1,3 +1,5 @@
+**Preview:** [new graphical home page](/new/)
+
 ### (experimeting with GitHib templates)
 
 

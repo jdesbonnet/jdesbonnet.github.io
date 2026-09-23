@@ -1,0 +1,1715 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Joe Desbonnet · Projects</title>
+<meta name="description" content="Projects by Joe Desbonnet: radio and radar modules, GNSS/RTK positioning, biomedical signals, spectroscopy, signal-processing visualisations and embedded hardware.">
+<meta name="color-scheme" content="dark light">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0e0d'/%3E%3Cpath d='M3 17c3 0 3-9 6.5-9S13 24 16.5 24 20 8 23.5 8 26 17 29 17' fill='none' stroke='%235cf28f' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --bg: #0a0e0d;
+    --panel: #111715;
+    --screen: #070a09;
+    --ink: #e4ece7;
+    --muted: #8b9d95;
+    --faint: #4f5f58;
+    --line: #1d2925;
+    --grid: #15201c;
+    --red: #ff6464;
+
+    --radio: #ffb04a;
+    --gnss: #4fd3ff;
+    --body: #5cf28f;
+    --light: #b893ff;
+    --signal: #ff6fa9;
+    --make: #ff8c55;
+    --galway: #6fb4ff;
+    --accent: var(--body);
+
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    --sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #f3f5f2;
+      --panel: #ffffff;
+      --screen: #f7f9f6;
+      --ink: #14201b;
+      --muted: #536560;
+      --faint: #a3b1aa;
+      --line: #dce3de;
+      --grid: #e8ede9;
+      --red: #d0342c;
+
+      --radio: #b36200;
+      --gnss: #0074a6;
+      --body: #0a8741;
+      --light: #6a3fd0;
+      --signal: #c2185b;
+      --make: #c24410;
+      --galway: #1f5fb0;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.55 var(--sans);
+  }
+  a { color: var(--accent); }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+  .mono { font-family: var(--mono); }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 16px; }
+  @media (min-width: 720px) { .wrap { padding: 0 28px; } }
+
+  /* Hero */
+  .hero { padding-top: 44px; padding-bottom: 8px; }
+  .kicker {
+    margin: 0 0 12px;
+    font: 12px/1 var(--mono);
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  h1 {
+    margin: 0;
+    font-size: clamp(2.5rem, 7.5vw, 4.4rem);
+    line-height: 1;
+    letter-spacing: -.025em;
+  }
+  .tagline {
+    margin: 14px 0 0;
+    font: clamp(1rem, 2.6vw, 1.25rem)/1.3 var(--mono);
+    color: var(--accent);
+  }
+  .intro { max-width: 46rem; margin: 14px 0 0; color: var(--muted); }
+  .pills { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 0; padding: 0; list-style: none; }
+  .pill {
+    display: inline-block;
+    padding: 7px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--panel);
+    color: var(--ink);
+    font: 13px/1 var(--mono);
+    text-decoration: none;
+  }
+  .pill:hover { border-color: var(--accent); color: var(--accent); }
+  .scope {
+    margin-top: 28px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--screen);
+  }
+  .scope canvas { display: block; width: 100%; height: clamp(120px, 17vw, 200px); }
+
+  /* Theme index */
+  .themes { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; padding: 0; list-style: none; }
+  .themes a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px 6px 10px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--ink);
+    font-size: .88rem;
+    text-decoration: none;
+  }
+  .themes a::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+  }
+  .themes a:hover { border-color: var(--accent); }
+
+  /* Sections */
+  .theme { padding-top: 44px; scroll-margin-top: 12px; }
+  .sec-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 12px;
+    margin-bottom: 16px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+  }
+  .sec-no { font: 12px/1 var(--mono); color: var(--accent); }
+  .sec-head h2 { margin: 0; font-size: 1.35rem; letter-spacing: -.01em; }
+  .sec-head p { margin: 0; flex-basis: 100%; color: var(--muted); font-size: .95rem; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: 16px;
+  }
+
+  /* Cards */
+  .card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--panel);
+    transition: border-color .2s, transform .2s;
+  }
+  .card:hover { border-color: color-mix(in srgb, var(--accent) 55%, var(--line)); transform: translateY(-2px); }
+  .card.live { border-color: var(--accent); }
+  .card canvas {
+    display: block;
+    width: 100%;
+    height: 168px;
+    background: var(--screen);
+    border-bottom: 1px solid var(--line);
+  }
+  .card-body { display: flex; flex: 1; flex-direction: column; gap: 8px; padding: 14px 16px 16px; }
+  .card h3 { margin: 0; font-size: 1.02rem; line-height: 1.3; }
+  .card p { margin: 0; color: var(--muted); font-size: .92rem; }
+  .stars { margin-left: 6px; color: var(--muted); font: 12px/1 var(--mono); white-space: nowrap; }
+  .stars::before { content: "★ "; color: var(--accent); }
+  .links { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 6px; }
+  .links a {
+    padding: 6px 10px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--accent);
+    font: 12px/1 var(--mono);
+    text-decoration: none;
+  }
+  .links a:hover { border-color: var(--accent); }
+  .links a[href^="http"]::after { content: " ↗"; opacity: .7; }
+
+  /* Link lists */
+  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 8px 32px; }
+  .cols h3 { margin: 0 0 4px; font: 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+  .linklist { margin: 0; padding: 0; list-style: none; }
+  .linklist li { padding: 10px 0; border-bottom: 1px solid var(--line); }
+  .linklist a { color: var(--ink); font-weight: 600; text-decoration: none; }
+  .linklist a:hover { color: var(--accent); }
+  .linklist span { display: block; color: var(--muted); font-size: .88rem; }
+
+  footer { margin-top: 56px; padding-bottom: 40px; color: var(--muted); font-size: .88rem; }
+  footer::before { content: ""; display: block; margin-bottom: 20px; border-top: 1px solid var(--line); }
+  footer p { margin: 0 0 6px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .card, .card:hover { transition: none; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero wrap">
+  <p class="kicker">jdesbonnet.github.io</p>
+  <h1>Joe Desbonnet</h1>
+  <p class="tagline">Signals · sensors · satellites · code</p>
+  <p class="intro">Projects and notes from my bench: reverse-engineered radio modules, GNSS/RTK positioning,
+    biomedical signals, spectroscopy, signal-processing visualisations and small embedded boards.
+    Most of it is open source on GitHub, and a lot of it ends up on my blog.</p>
+  <ul class="pills">
+    <li><a class="pill" href="https://jdesbonnet.blogspot.com/">Blog</a></li>
+    <li><a class="pill" href="https://github.com/jdesbonnet/">GitHub</a></li>
+    <li><a class="pill" href="https://www.flickr.com/photos/95536210@N00/albums/72157677593272521">Visualisations</a></li>
+    <li><a class="pill" href="https://www.researchgate.net/profile/Joe_Desbonnet">Publications</a></li>
+    <li><a class="pill" href="#elsewhere">Videos &amp; more</a></li>
+  </ul>
+  <div class="scope"><canvas data-draw="scope" aria-hidden="true"></canvas></div>
+  <nav aria-label="Project themes">
+    <ul class="themes">
+      <li><a href="#radio" style="--accent: var(--radio)">Radio &amp; radar</a></li>
+      <li><a href="#gnss" style="--accent: var(--gnss)">Satellite navigation</a></li>
+      <li><a href="#body" style="--accent: var(--body)">Body signals</a></li>
+      <li><a href="#light" style="--accent: var(--light)">Light, heat &amp; sensing</a></li>
+      <li><a href="#signals" style="--accent: var(--signal)">Signals &amp; simulation</a></li>
+      <li><a href="#making" style="--accent: var(--make)">Embedded &amp; making</a></li>
+      <li><a href="#galway" style="--accent: var(--galway)">Galway</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section id="radio" class="theme" style="--accent: var(--radio)">
+    <div class="sec-head">
+      <span class="sec-no">01</span>
+      <h2>Radio &amp; radar</h2>
+      <p>Listening in on the radios inside cheap modules and gadgets.</p>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <canvas data-draw="radar" aria-hidden="true"></canvas>
+        <div class="card-body">
+          <h3>RCWL-0516 microwave radar <span class="stars">790</span></h3>
+          <p>Everything I could find about a cheap Doppler-radar motion sensor module, an alternative to a PIR sensor.
+            The carrier turned out to be about 3.18&nbsp;GHz, found with a HackRF.</p>
+          <p class="links">
+            <a href="https://github.com/jdesbonnet/RCWL-0516">repo</a>
+            <a href="https://github.com/jdesbonnet/RCWL-0516/issues">discussion</a>
+          </p>
+        </div>
+      </article>
+      <article class="card">
+        <canvas data-draw="fsk" aria-hidden="true"></canvas>
+        <div class="card-body">
+          <h3>Efergy energy-monitor decoder</h3>
+          <p>Decoding the radio frames sent by Efergy electricity monitors, using a cheap RTL-SDR dongle.</p>
+          <p class="links">
+            <a href="https://github.com/jdesbonnet/rtl-sdr-efergy">rtl-sdr-efergy</a>
+            <a href="https://github.com/jdesbonnet/rtl-sdr-efergy-e2">efergy-e2</a>
+          </p>
+        </div>
+      </article>
+      <article class="card">
+        <canvas data-draw="gimbal" aria-hidden="true"></canvas>
+        <div class="card-body">
+          <h3>Camera gimbal protocols</h3>
+          <p>Reverse-engineered radio protocols and control code for the DJI RS3 (Bluetooth LE) and
+            Zifon PT5000 (nRF24L01-style 2.4&nbsp;GHz) camera gimbals.</p>
+          <p class="links">
+            <a href="https://github.com/jdesbonnet/dji_rs3_control">dji_rs3_control</a>
+            <a href="https://jdesbonnet.github.io/dji_rs3_control/web/">RS3 web app</a>
+            <a href="https://github.com/jdesbonnet/zifon_pt5000">zifon_pt5000</a>
+          </p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="gnss" class="theme" style="--accent: var(--gnss)">
+    <div class="sec-head">
+      <span class="sec-no">02</span>
+      <h2>Satellite navigation</h2>
+      <p>GNSS receivers, RTK positioning and the data behind them.</p>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <canvas data-draw="gnss" aria-hidden="true"></canvas>
+        <div class="card-body">
+          <h3>GNSS / RTK positioning <span class="stars">33</span></h3>
+          <p>Software, scripts and data for real-time and post-processed kinematic satellite navigation,
+            a low-cost RTK survey kit and a Java GNSS library.</p>
+          <p class="links">
+            <a href="https://github.com/jdesbonnet/GNSS_RTK">GNSS_RTK</a>
+            <a href="https://github.com/jdesbonnet/RTK_survey">RTK_survey</a>
+            <a href="https://jdesbonnet.github.io/java_gnss/">java_gnss</a>
+            <a href="https://www.youtube.com/watch?v=LEgrHhiTG84">survey video</a>
+          </p>
+        </div>
+      </article>
+      <article class="card">
+        <canvas data-draw="gpssa" aria-hidden="true"></canvas>
+        <div class="card-body">
+          <h3>GPS Selective Availability switch-off</h3>
+          <p>GPS receiver data and a visualisation of the moment Selective Availability was switched off
+            on 2 May 2000, when civilian accuracy improved about tenfold.</p>
+          <p class="links">
+            <a href="https://github.com/jdesbonnet/GPS_SA_switch_off">repo</a>
+          </p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="body" class="theme" style="--accent: var(--body)">
+    <div class="sec-head">
+      <span class="sec-no">03</span>
+      <h2>Body signals</h2>
+      <p>ECG, PPG and blood-pressure front ends on small microcontrollers.</p>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <canvas data-draw="ecg" aria-hidden="true"></canvas>
+        <div class="card-body">
+          <h3>ECG front ends</h3>
+          <p>Code and PCBs for TI ADS1x9x ECG front-end chips, including an LPC824 + ADS1292R board and LPC1114 firmware.</p>
+          <p class="links">
+            <a href="https://github.com/jdesbonnet/ADS1x9xECG">ADS1x9xECG</a>
+            <a href="https://github.com/jdesbonnet/LPC824_ADS1292R">LPC824_ADS1292R</a>
+            <a href="https://github.com/jdesbonnet/LPC1114_ECG_firmware">LPC1114 firmware</a>
+          </p>
+        </div>
+      </article>
+      <article class="card">
+        <canvas data-draw="ppg" aria-hidden="true"></canvas>
+        <div class="card-body">
+          <h3>PPG, SpO₂ and blood pressure</h3>
+          <p>Tools for analysing photoplethysmogram signals, MAX30102 SpO₂ sensor firmware, and an add-on that
+            turns a low-cost blood pressure monitor into an ambulatory one.</p>
+          <p class="links">
+            <a href="https://github.com/jdesbonnet/PPG_Tools">PPG_Tools</a>
+            <a href="https://github.com/jdesbonnet/LPC824_MAX30102">MAX30102</a>
+            <a href="https://github.com/jdesbonnet/LPC824_BP">LPC824_BP</a>
+          </p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="light" class="theme" style="--accent: var(--light)">
+    <div class="sec-head">
+      <span class="sec-no">04</span>
+      <h2>Light, heat &amp; sensing</h2>
+      <p>Spectral, thermal and time-of-flight sensors, and how surfaces warm in sunlight.</p>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <canvas data-draw="spectro" aria-hidden="true"></canvas>
+        <div class="card-body">
+          <h3>AS7265x 18-channel spectrometer <span class="stars">12</span></h3>
+          <p>C library and utility for the AMS AS7265x spectral sensor (410–940&nbsp;nm), experiment data,
+            and work with the Hamamatsu C12880MA micro-spectrometer.</p>
+          <p class="links">
+            <a href="https://github.com/jdesbonnet/as7265x">as7265x</a>
+            <a href="https://github.com/jdesbonnet/as7265x_experiments">experiments</a>
+            <a href="https://github.com/jdesbonnet/hamamatsu_c12880ma">C12880MA</a>
+          </p>
+        </div>
+      </article>
+      <article class="card">
+        <canvas data-draw="thermal" aria-hidden="true"></canvas>
+        <div class="card-body">
+          <h3>Thermal &amp; time-of-flight cameras</h3>
+          <p>Convert raw radiometric FLIR E4/E8 images into temperatures without proprietary software,
+            plus tools for the Terabee 3Dcam 80×60 time-of-flight camera.</p>
+          <p class="links">
+            <a href="https://github.com/jdesbonnet/flir_tools">flir_tools</a>
+            <a href="https://github.com/jdesbonnet/terabee_3dcam_tools">terabee_3dcam_tools</a>
+          </p>
+        </div>
+      </article>
+      <article class="card">
+        <canvas data-draw="radiative" aria-hidden="true"></canvas>
+        <div class="card-body">
+          <h3>Radiative heat balance</h3>
+          <p>A physics simulator that explores how surfaces heat up when exposed to the sun or other radiative sources.</p>
+          <p class="links">
+            <a href="https://jdesbonnet.github.io/radiative-balance-sim/">simulator</a>
+            <a href="https://github.com/jdesbonnet/radiative-balance-sim">repo</a>
+          </p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="signals" class="theme" style="--accent: var(--signal)">
+    <div class="sec-head">
+      <span class="sec-no">05</span>
+      <h2>Signals &amp; simulation</h2>
+      <p>Visual tools for signal processing and physics.</p>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <canvas data-draw="fourier" aria-hidden="true"></canvas>
+        <div class="card-body">
+          <h3>Fourier (DFT) learning tools</h3>
+          <p>Browser-based tools for learning the discrete Fourier transform and convolution, with interactive plots.</p>
+          <p class="links">
+            <a href="/projects/dsp/fourier.html#/pages">DFT tool</a>
+            <a href="/projects/dsp/convolution.html">convolution</a>
+          </p>
+        </div>
+      </article>
+      <article class="card">
+        <canvas data-draw="waterfall" aria-hidden="true"></canvas>
+        <div class="card-body">
+          <h3>Audio → waterfall plot <span class="stars">8</span></h3>
+          <p>A script that renders an audio file, such as an MP3, into a video of a scrolling spectrum waterfall.</p>
+          <p class="links">
+            <a href="https://github.com/jdesbonnet/audio-to-waterfall-plot-video">repo</a>
+            <a href="https://www.youtube.com/watch?v=utp95bprqeg">video</a>
+          </p>
+        </div>
+      </article>
+      <article class="card">
+        <canvas data-draw="acoustic" aria-hidden="true"></canvas>
+        <div class="card-body">
+          <h3>Acoustic pulse reflection <span class="stars">13</span></h3>
+          <p>Experiments with the k-Wave acoustics toolbox and Octave, simulating how an acoustic pulse spreads and reflects.</p>
+          <p class="links">
+            <a href="https://github.com/jdesbonnet/experiments_with_k-Wave">repo</a>
+            <a href="https://www.youtube.com/watch?v=H_efwF418GU">video</a>
+          </p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="making" class="theme" style="--accent: var(--make)">
+    <div class="sec-head">
+      <span class="sec-no">06</span>
+      <h2>Embedded &amp; making</h2>
+      <p>Bare-chip firmware, PCBs, LEDs and utilities.</p>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <canvas data-draw="leds" aria-hidden="true"></canvas>
+        <div class="card-body">
+          <h3>WS2812B LED matrices</h3>
+          <p>WS2812B RGB LED drivers for the LPC824, and an experimental 30×16 LED matrix that became a Christmas decoration.</p>
+          <p class="links">
+            <a href="https://github.com/jdesbonnet/LPC824_WS2812B">LPC824_WS2812B</a>
+            <a href="https://github.com/jdesbonnet/WS2812B_matrix">WS2812B_matrix</a>
+            <a href="https://github.com/jdesbonnet/hohoho">hohoho</a>
+          </p>
+        </div>
+      </article>
+      <article class="card">
+        <canvas data-draw="pcb" aria-hidden="true"></canvas>
+        <div class="card-body">
+          <h3>LPC8xx firmware &amp; PCBs</h3>
+          <p>Bare-chip ARM Cortex-M0+ projects: a sous-vide controller, RFM69/LoRa radio boards,
+            flash-as-EEPROM, and breakout PCBs.</p>
+          <p class="links">
+            <a href="https://github.com/jdesbonnet/LPC810_SousVide">sous vide</a>
+            <a href="https://github.com/jdesbonnet/RFMxx_LPC812_PCB">RFMxx board</a>
+            <a href="https://github.com/jdesbonnet/LPC8xx_Flash_EEPROM">flash EEPROM</a>
+            <a href="https://github.com/jdesbonnet/PCB_LPC824M201JDH20_breakout">TSSOP20 breakout</a>
+          </p>
+        </div>
+      </article>
+      <article class="card">
+        <canvas data-draw="hexdiff" aria-hidden="true"></canvas>
+        <div class="card-body">
+          <h3>JBDiff binary diff <span class="stars">40</span></h3>
+          <p>A Java translation of Colin Percival's bsdiff binary diff and patch utility.</p>
+          <p class="links">
+            <a href="https://github.com/jdesbonnet/jbdiff">repo</a>
+          </p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="galway" class="theme" style="--accent: var(--galway)">
+    <div class="sec-head">
+      <span class="sec-no">07</span>
+      <h2>Galway</h2>
+      <p>Local history online, and the harbour through a webcam.</p>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <canvas data-draw="tide" aria-hidden="true"></canvas>
+        <div class="card-body">
+          <h3>History and harbour</h3>
+          <p>Online editions of James Hardiman's <em>History of Galway</em> (1820) and William Wilde's
+            <em>Lough Corrib</em> (1872), plus a harbour webcam with a tide gauge and sun, moon and Venus overlay.</p>
+          <p class="links">
+            <a href="https://jdesbonnet.github.io/history-of-galway-hardiman/">Hardiman</a>
+            <a href="https://github.com/jdesbonnet/lough_corrib_wilde">Lough Corrib</a>
+            <a href="https://www.youtube.com/watch?v=myQoCMbS1u8">webcam video</a>
+          </p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="elsewhere" class="theme">
+    <div class="sec-head">
+      <span class="sec-no">08</span>
+      <h2>Elsewhere</h2>
+      <p>Writing, photos, videos and small tools.</p>
+    </div>
+    <div class="cols">
+      <div>
+        <h3>Writing &amp; photos</h3>
+        <ul class="linklist">
+          <li><a href="https://jdesbonnet.blogspot.com/">Technology blog</a><span>jdesbonnet.blogspot.com</span></li>
+          <li><a href="https://github.com/jdesbonnet/">GitHub repositories</a><span>github.com/jdesbonnet</span></li>
+          <li><a href="https://www.researchgate.net/profile/Joe_Desbonnet">Academic publications</a><span>ResearchGate</span></li>
+          <li><a href="https://www.flickr.com/photos/95536210@N00/albums/72157677593272521">Visualisations gallery</a><span>Flickr album</span></li>
+          <li><a href="https://www.flickr.com/photos/95536210@N00/">Photos I've taken over the years</a><span>Flickr</span></li>
+          <li><a href="https://www.photo.net/190681#//Sort-Newest/All-Categories/All-Time/Page-1">More photos</a><span>photo.net</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Videos</h3>
+        <ul class="linklist">
+          <li><a href="https://www.youtube.com/watch?v=LEgrHhiTG84">GPS/GNSS static survey visualisation</a><span>YouTube</span></li>
+          <li><a href="https://www.youtube.com/watch?v=H_efwF418GU">Simulation of acoustic pulse reflection</a><span>YouTube</span></li>
+          <li><a href="https://www.youtube.com/watch?v=AvwtpLyUt3k&amp;t=225s">Computer-vision lab mouse behaviour tracker</a><span>YouTube</span></li>
+          <li><a href="https://www.youtube.com/watch?v=utp95bprqeg">Music as a scrolling waterfall frequency plot</a><span>YouTube</span></li>
+          <li><a href="https://www.youtube.com/watch?v=myQoCMbS1u8">Galway harbour webcam with tide gauge and sun/moon/Venus overlay</a><span>YouTube</span></li>
+          <li><a href="https://www.youtube.com/watch?v=bKjLuIVWbms">Lidl smoke alarm teardown</a><span>YouTube</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Also on this site</h3>
+        <ul class="linklist">
+          <li><a href="/projects/dsp/fourier.html#/pages">Fourier transform visual tool</a><span>Learn DSP</span></li>
+          <li><a href="/projects/watched_kettle/">Watched Kettle</a><span>How long to heat water to a target temperature, with a countdown timer</span></li>
+          <li><a href="/projects/lined_paper/lined_paper.html">Lined paper</a><span>Generate a PostScript page of ruled lines</span></li>
+          <li><a href="/playstore/">EV Charge</a><span>A private log for EV charging sessions (Android app)</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <p>The drawings are small sketches loosely based on each project. Hover over one for a moment (or tap it) to set it running. They stay still if you prefer reduced motion.</p>
+  <p><a href="/">Current home page</a> · Joe Desbonnet</p>
+</footer>
+
+<script>
+(() => {
+  'use strict';
+
+  const TAU = Math.PI * 2;
+  const MONO = 'ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace';
+  const WHITE = [255, 255, 255];
+
+  const frac = (x) => x - Math.floor(x);
+  const mod = (a, n) => ((a % n) + n) % n;
+  const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+  const hash = (n) => frac(Math.sin(n * 127.1 + 311.7) * 43758.5453);
+  const hash2 = (a, b) => hash(a * 57.31 + b * 113.7);
+  const gauss = (x, mu, s) => Math.exp(-((x - mu) * (x - mu)) / (2 * s * s));
+  const mix = (a, b, t) => [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t];
+  const css = (c, a = 1) => `rgba(${c[0] | 0},${c[1] | 0},${c[2] | 0},${a})`;
+  const signed = (v, d = 1) => (v < 0 ? '−' : '+') + Math.abs(v).toFixed(d);
+
+  function parse(s) {
+    s = s.trim();
+    if (s[0] === '#') {
+      let h = s.slice(1);
+      if (h.length === 3) h = [...h].map((x) => x + x).join('');
+      const n = parseInt(h, 16);
+      return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+    }
+    const m = s.match(/[\d.]+/g);
+    return m ? m.slice(0, 3).map(Number) : [128, 128, 128];
+  }
+
+  function label(ctx, s, x, y, col, align = 'left', px = 10) {
+    ctx.font = `${px}px ${MONO}`;
+    ctx.textAlign = align;
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = col;
+    ctx.fillText(s, x, y);
+  }
+
+  function graticule(ctx, w, h, c, step) {
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = css(c.grid);
+    ctx.beginPath();
+    for (let x = mod(w / 2, step); x < w; x += step) {
+      ctx.moveTo(Math.round(x) + 0.5, 0);
+      ctx.lineTo(Math.round(x) + 0.5, h);
+    }
+    for (let y = mod(h / 2, step); y < h; y += step) {
+      ctx.moveTo(0, Math.round(y) + 0.5);
+      ctx.lineTo(w, Math.round(y) + 0.5);
+    }
+    ctx.stroke();
+  }
+
+  function glowDot(ctx, x, y, col, r = 3) {
+    ctx.fillStyle = css(col, 0.25);
+    ctx.beginPath();
+    ctx.arc(x, y, r * 2.4, 0, TAU);
+    ctx.fill();
+    ctx.fillStyle = css(col);
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, TAU);
+    ctx.fill();
+  }
+
+  function roundRect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+  }
+
+  // Small offscreen pixel buffer, reallocated when its size changes.
+  function pixels(s, W, H) {
+    if (!s.buf || s.buf.width !== W || s.buf.height !== H) {
+      s.buf = document.createElement('canvas');
+      s.buf.width = W;
+      s.buf.height = H;
+      s.bctx = s.buf.getContext('2d');
+      s.img = s.bctx.createImageData(W, H);
+    }
+    return s.img.data;
+  }
+
+  function lut(s, c, n, fn) {
+    if (s.lutKey !== c.key) {
+      s.lut = Array.from({ length: n }, (_, i) => fn(i / (n - 1)));
+      s.lutKey = c.key;
+    }
+    return s.lut;
+  }
+
+  // Each drawing is fn(ctx, width, height, seconds, colours, state).
+  const DRAW = {};
+
+  // Hero: oscilloscope sweep with phosphor persistence.
+  DRAW.scope = (ctx, w, h, t, c) => {
+    const div = h / 8;
+    graticule(ctx, w, h, c, div);
+    ctx.strokeStyle = css(c.faint, 0.6);
+    ctx.beginPath();
+    ctx.moveTo(0, Math.round(h / 2) + 0.5);
+    ctx.lineTo(w, Math.round(h / 2) + 0.5);
+    ctx.stroke();
+
+    const period = 5, amp = h * 0.3, mid = h / 2;
+    const sig = (x, s) => {
+      const u = x / w;
+      return 0.55 * Math.sin(TAU * u * 2.5 + s * 0.9)
+        + 0.22 * Math.sin(TAU * u * 6.3 - s * 1.6)
+        + 0.1 * Math.sin(TAU * u * 15.2 + s * 2.7)
+        + 0.4 * gauss(frac(u * 1.5 - s * 0.07), 0.5, 0.012);
+    };
+    const beam = frac(t / period) * w;
+    const seg = 6;
+    ctx.lineJoin = 'round';
+    for (let x0 = 0; x0 < w; x0 += seg) {
+      const age = frac((beam - x0) / w);
+      const a = Math.pow(1 - age, 1.6);
+      ctx.beginPath();
+      for (let x = x0; x <= Math.min(w, x0 + seg); x += 2) {
+        const y = mid - amp * sig(x, t - frac((beam - x) / w) * period);
+        x === x0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.strokeStyle = css(c.accent, 0.12 * a);
+      ctx.lineWidth = 5;
+      ctx.stroke();
+      ctx.strokeStyle = css(c.accent, 0.12 + 0.88 * a);
+      ctx.lineWidth = 1.6;
+      ctx.stroke();
+    }
+    glowDot(ctx, beam, mid - amp * sig(beam, t), c.accent, 2.5);
+
+    label(ctx, 'CH1  500 mV/div', 12, 14, css(c.accent));
+    label(ctx, '1 ms/div', w - 12, 14, css(c.muted), 'right');
+    label(ctx, 'RUN', 12, h - 14, css(c.accent));
+    label(ctx, 'TRIG ▲ CH1', w - 12, h - 14, css(c.muted), 'right');
+  };
+
+  // RCWL-0516: Doppler rings bouncing off a walker, and the beat signal.
+  DRAW.radar = (ctx, w, h, t, c) => {
+    const fh = Math.round(h * 0.64), ay = fh / 2 + 6, ax = 16;
+    const tx = w * 0.62 + Math.sin(t * 0.7) * w * 0.2;
+    const vn = Math.cos(t * 0.7);
+    const speed = 150, period = 0.42;
+
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(0, 0, w, fh);
+    ctx.clip();
+    ctx.lineWidth = 1.5;
+    const n0 = Math.floor(t / period);
+    for (let k = 0; k < 16; k++) {
+      const r = (t - (n0 - k) * period) * speed;
+      if (r > w) break;
+      ctx.strokeStyle = css(c.accent, 0.75 * (1 - r / w));
+      ctx.beginPath();
+      ctx.arc(ax, ay, r, -0.75, 0.75);
+      ctx.stroke();
+      const d = tx - 8 - ax, rr = r - d;
+      if (rr > 0 && rr < d) {
+        ctx.strokeStyle = css(c.ink, 0.5 * (1 - rr / d));
+        ctx.beginPath();
+        ctx.arc(tx - 8, ay, rr, Math.PI - 0.6, Math.PI + 0.6);
+        ctx.stroke();
+      }
+    }
+    ctx.restore();
+
+    // The module, and a walking figure
+    ctx.fillStyle = css(c.accent, 0.3);
+    ctx.fillRect(4, ay - 16, 9, 32);
+    ctx.fillStyle = css(c.accent);
+    ctx.fillRect(12, ay - 16, 2, 32);
+    const step = Math.sin(t * 7) * 5 * Math.abs(vn);
+    ctx.strokeStyle = css(c.ink, 0.9);
+    ctx.lineWidth = 2;
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    ctx.arc(tx, ay - 17, 4.5, 0, TAU);
+    ctx.moveTo(tx, ay - 12); ctx.lineTo(tx, ay + 5);
+    ctx.moveTo(tx, ay + 5); ctx.lineTo(tx + step, ay + 18);
+    ctx.moveTo(tx, ay + 5); ctx.lineTo(tx - step, ay + 18);
+    ctx.moveTo(tx, ay - 8); ctx.lineTo(tx - step * 0.8, ay + 2);
+    ctx.moveTo(tx, ay - 8); ctx.lineTo(tx + step * 0.8, ay + 2);
+    ctx.stroke();
+    ctx.lineCap = 'butt';
+
+    // Doppler beat: frequency follows the walker's speed
+    ctx.strokeStyle = css(c.grid);
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(0, fh + 0.5);
+    ctx.lineTo(w, fh + 0.5);
+    ctx.stroke();
+    const y0 = fh + (h - fh) / 2 + 3, A = (h - fh) * 0.34;
+    ctx.beginPath();
+    for (let x = 0; x <= w; x += 1.5) {
+      const s = t - (1 - x / w) * 2.5;
+      const y = y0 - A * Math.sqrt(Math.abs(Math.cos(s * 0.7))) * Math.sin(70 * Math.sin(s * 0.7));
+      x ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+    }
+    ctx.strokeStyle = css(c.accent);
+    ctx.lineWidth = 1.3;
+    ctx.stroke();
+
+    const on = Math.abs(vn) > 0.3;
+    label(ctx, '3.18 GHz', 22, 12, css(c.muted));
+    label(ctx, 'OUT', w - 22, 12, css(c.muted), 'right');
+    ctx.fillStyle = on ? css(c.accent) : css(c.faint);
+    ctx.beginPath();
+    ctx.arc(w - 12, 12, 4, 0, TAU);
+    ctx.fill();
+    label(ctx, 'Δf ∝ v', 8, fh + 11, css(c.muted));
+  };
+
+  // Efergy: an FSK burst scrolling past with its decoded bits and bytes.
+  const FSK_BITS = (() => {
+    const bits = [];
+    for (let i = 0; i < 16; i++) bits.push((i + 1) % 2);
+    for (const b of '00101101') bits.push(+b);
+    for (let i = 0; i < 56; i++) bits.push(hash(i * 3.1 + 7) > 0.5 ? 1 : 0);
+    return bits;
+  })();
+
+  DRAW.fsk = (ctx, w, h, t, c) => {
+    const bw = 18, n = FSK_BITS.length, L = n * bw, P = L + 110, off = t * 42;
+    const yw = h * 0.32, aw = h * 0.12, yHi = h * 0.53, yLo = h * 0.63;
+    const bitAt = (x) => {
+      const s = mod(x + off, P);
+      return s < L ? [FSK_BITS[Math.floor(s / bw)], (s % bw) / bw] : null;
+    };
+
+    ctx.beginPath();
+    for (let x = 0; x <= w; x++) {
+      const b = bitAt(x);
+      const y = b ? yw - aw * Math.sin(TAU * b[1] * (b[0] ? 2 : 1))
+        : yw + (hash(Math.floor(x + off)) - 0.5) * 3;
+      x ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+    }
+    ctx.strokeStyle = css(c.accent);
+    ctx.lineWidth = 1.4;
+    ctx.stroke();
+
+    ctx.beginPath();
+    let prev = 0;
+    for (let x = 0; x <= w; x++) {
+      const b = bitAt(x);
+      const y = b && b[0] ? yHi : yLo;
+      if (!x) ctx.moveTo(x, y);
+      else {
+        if (y !== prev) ctx.lineTo(x, prev);
+        ctx.lineTo(x, y);
+      }
+      prev = y;
+    }
+    ctx.strokeStyle = css(c.ink, 0.7);
+    ctx.lineWidth = 1.2;
+    ctx.stroke();
+
+    const m0 = Math.floor(off / P);
+    for (let m = m0; m <= m0 + Math.ceil(w / P) + 1; m++) {
+      const base = m * P - off;
+      for (let k = 0; k < n; k++) {
+        const x = base + k * bw + bw / 2;
+        if (x < -bw * 8 || x > w + bw * 8) continue;
+        label(ctx, String(FSK_BITS[k]), x, h * 0.73, css(c.muted), 'center', 9);
+        if (k % 8 === 0) {
+          let byte = 0;
+          for (let j = 0; j < 8; j++) byte = (byte << 1) | FSK_BITS[k + j];
+          const bx = base + k * bw;
+          ctx.fillStyle = css(c.faint, 0.7);
+          ctx.fillRect(bx + 3, h * 0.8, bw * 8 - 6, 1);
+          label(ctx, byte.toString(16).toUpperCase().padStart(2, '0'), bx + bw * 4, h * 0.88, css(c.accent), 'center', 10);
+        }
+      }
+    }
+    label(ctx, '433 MHz FSK', 8, 12, css(c.muted));
+    label(ctx, 'RTL-SDR', w - 8, 12, css(c.muted), 'right');
+  };
+
+  // Gimbals: three nested rings for yaw, pitch and roll.
+  DRAW.gimbal = (ctx, w, h, t, c) => {
+    const yaw = t * 0.45, pitch = Math.sin(t * 0.8) * 0.55, roll = Math.sin(t * 0.55 + 1) * 0.35;
+    const cx = w / 2, cy = h * 0.46, R = Math.min(w * 0.3, h * 0.42), tilt = -0.42;
+    const rot = (p, a, ax) => {
+      const cs = Math.cos(a), sn = Math.sin(a), [x, y, z] = p;
+      if (ax === 'x') return [x, y * cs - z * sn, y * sn + z * cs];
+      if (ax === 'y') return [x * cs + z * sn, y, -x * sn + z * cs];
+      return [x * cs - y * sn, x * sn + y * cs, z];
+    };
+    const view = (p) => {
+      const q = rot(p, tilt, 'x'), f = 1 / (1 - q[2] * 0.18);
+      return [cx + q[0] * R * f, cy - q[1] * R * f, q[2]];
+    };
+    const outer = (p) => rot(p, yaw, 'y');
+    const middle = (p) => outer(rot(p, pitch, 'x'));
+    const inner = (p) => middle(rot(p, roll, 'z'));
+    const rings = [
+      [1.0, (a) => [Math.cos(a), Math.sin(a), 0], outer, c.accent, 2.4],
+      [0.8, (a) => [Math.cos(a), 0, Math.sin(a)], middle, mix(c.accent, c.ink, 0.45), 2],
+      [0.6, (a) => [0, Math.cos(a), Math.sin(a)], inner, c.ink, 1.6],
+    ];
+    const N = 72;
+    for (const [r, shape, tf, col, lw] of rings) {
+      ctx.lineWidth = lw;
+      let prev = view(tf(shape(0).map((v) => v * r)));
+      for (let i = 1; i <= N; i++) {
+        const p = view(tf(shape((i / N) * TAU).map((v) => v * r)));
+        ctx.strokeStyle = css(col, 0.3 + 0.7 * clamp((p[2] + 1) / 2, 0, 1));
+        ctx.beginPath();
+        ctx.moveTo(prev[0], prev[1]);
+        ctx.lineTo(p[0], p[1]);
+        ctx.stroke();
+        prev = p;
+      }
+    }
+    const o = view([0, 0, 0]), fwd = view(inner([0, 0, 0.5]));
+    ctx.strokeStyle = css(c.accent);
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(o[0], o[1]);
+    ctx.lineTo(fwd[0], fwd[1]);
+    ctx.stroke();
+    glowDot(ctx, fwd[0], fwd[1], c.accent, 3);
+
+    const deg = (a) => signed(mod(a * 180 / Math.PI + 180, 360) - 180);
+    const px = w < 300 ? 9 : 10;
+    label(ctx, `YAW ${deg(yaw)}°  PITCH ${deg(pitch)}°  ROLL ${deg(roll)}°`, w / 2, h - 12, css(c.muted), 'center', px);
+    label(ctx, 'BLE · 2.4 GHz', 8, 12, css(c.muted));
+  };
+
+  // GNSS: sky plot with moving satellites, and an RTK solution converging.
+  const SATS = [['G05', 0.3, 55], ['G12', 1.4, 30], ['G25', 2.3, 72], ['G29', 3.6, 20], ['E11', 4.4, 45],
+    ['E24', 5.2, 62], ['R07', 0.9, 16], ['C19', 2.9, 38], ['G31', 5.8, 25]];
+
+  DRAW.gnss = (ctx, w, h, t, c) => {
+    const R = Math.min(h / 2 - 14, w * 0.24), cx = R + 14, cy = h / 2 + 3;
+    ctx.strokeStyle = css(c.faint, 0.55);
+    ctx.lineWidth = 1;
+    for (const el of [0, 30, 60]) {
+      ctx.beginPath();
+      ctx.arc(cx, cy, R * (90 - el) / 90, 0, TAU);
+      ctx.stroke();
+    }
+    ctx.beginPath();
+    ctx.moveTo(cx - R, cy); ctx.lineTo(cx + R, cy);
+    ctx.moveTo(cx, cy - R); ctx.lineTo(cx, cy + R);
+    ctx.stroke();
+    label(ctx, 'N', cx, cy - R - 7, css(c.muted), 'center', 9);
+
+    SATS.forEach(([id, az0, el0], i) => {
+      const pos = (s) => {
+        const az = az0 + s * 0.035 * (i % 2 ? 1 : -0.7);
+        const el = clamp(el0 + 18 * Math.sin(s * 0.05 + i), 6, 86);
+        const r = R * (90 - el) / 90;
+        return [cx + r * Math.sin(az), cy - r * Math.cos(az)];
+      };
+      const col = id[0] === 'G' ? c.accent : id[0] === 'E' ? mix(c.accent, c.ink, 0.6) : c.muted;
+      ctx.strokeStyle = css(col, 0.35);
+      ctx.beginPath();
+      for (let j = 0; j <= 10; j++) {
+        const p = pos(t - 40 + j * 4);
+        j ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]);
+      }
+      ctx.stroke();
+      const p = pos(t);
+      glowDot(ctx, p[0], p[1], col, 3);
+      label(ctx, id, p[0] + 6, p[1] - 7, css(col, 0.9), 'left', 8);
+    });
+
+    // RTK scatter: single → float → fix
+    const x0 = cx + R + 16, sw = w - x0 - 8;
+    if (sw < 60) return;
+    const sr = Math.min(sw / 2, h / 2 - 18), sx = x0 + sw / 2, sy = h / 2 + 8;
+    ctx.strokeStyle = css(c.faint, 0.55);
+    ctx.beginPath();
+    ctx.moveTo(sx - sr, sy); ctx.lineTo(sx + sr, sy);
+    ctx.moveTo(sx, sy - sr); ctx.lineTo(sx, sy + sr);
+    ctx.stroke();
+    const P = 18, rate = 6;
+    const sigma = (ph) => (ph < 2 ? 0.9 : ph < 8 ? 0.55 * Math.exp(-(ph - 2) * 0.45) + 0.03 : 0.012);
+    const stateCol = (ph) => (ph < 2 ? c.muted : ph < 8 ? c.pal.radio : c.accent);
+    const k1 = Math.floor(t * rate);
+    for (let j = 89; j >= 0; j--) {
+      const k = k1 - j, ph = mod(k / rate, P), sg = sigma(ph);
+      const gx = (hash(k) + hash(k + 0.37) + hash(k + 0.71) - 1.5) * 1.4;
+      const gy = (hash(k + 5.1) + hash(k + 5.5) + hash(k + 5.9) - 1.5) * 1.4;
+      ctx.fillStyle = css(stateCol(ph), 1 - j / 90);
+      ctx.fillRect(sx + gx * sg * sr - 1.5, sy + gy * sg * sr - 1.5, 3, 3);
+    }
+    const ph = mod(t, P), m = sigma(ph) * 1.5;
+    const state = ph < 2 ? 'SINGLE' : ph < 8 ? 'FLOAT' : 'FIX';
+    label(ctx, state, x0, 12, css(stateCol(ph)));
+    label(ctx, m < 0.1 ? `σ ${(m * 100).toFixed(1)} cm` : `σ ${m.toFixed(2)} m`, w - 8, 12, css(c.muted), 'right');
+  };
+
+  // GPS Selective Availability: the scatter collapses when SA is switched off.
+  DRAW.gpssa = (ctx, w, h, t, c) => {
+    const P = 16, OFF = 9, rate = 20;
+    const err = (s) => {
+      const ph = mod(s, P), n1 = hash(Math.floor(s * rate)) - 0.5, n2 = hash(Math.floor(s * rate) + 0.5) - 0.5;
+      if (ph < OFF) {
+        return [42 * Math.sin(0.53 * s + 1.3) + 24 * Math.sin(1.37 * s + 0.2) + 8 * n1,
+          38 * Math.sin(0.61 * s + 2.2) + 22 * Math.sin(1.11 * s + 4) + 8 * n2];
+      }
+      return [2.5 * Math.sin(0.9 * s) + 5 * n1, 2.5 * Math.cos(0.7 * s) + 5 * n2];
+    };
+    const on = (s) => mod(s, P) < OFF;
+    const S = h - 22, ox = 10 + S / 2, oy = h / 2 + 2, k = (S / 2 - 4) / 100;
+    ctx.strokeStyle = css(c.faint, 0.55);
+    ctx.lineWidth = 1;
+    for (const r of [25, 50, 100]) {
+      ctx.beginPath();
+      ctx.arc(ox, oy, r * k, 0, TAU);
+      ctx.stroke();
+    }
+    label(ctx, '100 m', ox, oy - 100 * k - 6, css(c.muted), 'center', 8);
+    label(ctx, '50 m', ox + 50 * k * 0.72 + 2, oy - 50 * k * 0.72 - 4, css(c.muted), 'left', 8);
+    const k1 = Math.floor(t * rate);
+    for (let j = 99; j >= 0; j--) {
+      const s = (k1 - j) / rate, e = err(s);
+      ctx.fillStyle = css(on(s) ? c.pal.radio : c.accent, 1 - j / 100);
+      ctx.fillRect(ox + e[0] * k - 1.5, oy + e[1] * k - 1.5, 3, 3);
+    }
+
+    // Error magnitude over the last few seconds
+    const cx0 = ox + S / 2 + 18, cx1 = w - 10, top = 26, bot = h - 20, win = 14;
+    if (cx1 - cx0 < 60) return;
+    const Y = (m) => bot - clamp(m / 120, 0, 1) * (bot - top);
+    ctx.strokeStyle = css(c.faint, 0.55);
+    ctx.beginPath();
+    ctx.moveTo(cx0, bot + 0.5); ctx.lineTo(cx1, bot + 0.5);
+    ctx.moveTo(cx0, Y(100) + 0.5); ctx.lineTo(cx1, Y(100) + 0.5);
+    ctx.stroke();
+    label(ctx, '100 m', cx1, Y(100) - 7, css(c.muted), 'right', 8);
+    ctx.setLineDash([3, 3]);
+    for (let n = Math.floor((t - win) / P); n * P + OFF <= t; n++) {
+      const x = cx1 - (t - (n * P + OFF)) / win * (cx1 - cx0);
+      if (x < cx0) continue;
+      ctx.beginPath();
+      ctx.moveTo(x, top - 4); ctx.lineTo(x, bot);
+      ctx.stroke();
+      label(ctx, 'SA off', x + 3, bot - 8, css(c.muted), 'left', 8);
+    }
+    ctx.setLineDash([]);
+    ctx.beginPath();
+    for (let x = cx0; x <= cx1; x += 1.5) {
+      const e = err(t - (cx1 - x) / (cx1 - cx0) * win);
+      const y = Y(Math.hypot(e[0], e[1]));
+      x === cx0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.strokeStyle = css(c.ink, 0.85);
+    ctx.lineWidth = 1.3;
+    ctx.stroke();
+    label(ctx, on(t) ? 'SA ON' : 'SA OFF', cx0, 12, css(on(t) ? c.pal.radio : c.accent));
+    label(ctx, '2 May 2000', w - 8, 12, css(c.muted), 'right');
+  };
+
+  // ECG: patient-monitor sweep over ECG paper.
+  const ecgWave = (s) => {
+    const p = frac(s / 0.833);
+    return 0.12 * gauss(p, 0.17, 0.028) - 0.12 * gauss(p, 0.285, 0.01) + gauss(p, 0.305, 0.014)
+      - 0.25 * gauss(p, 0.325, 0.012) + 0.3 * gauss(p, 0.56, 0.045) + 0.02 * Math.sin(TAU * s / 4.1);
+  };
+
+  DRAW.ecg = (ctx, w, h, t, c) => {
+    ctx.lineWidth = 1;
+    for (const [step, col] of [[8, css(c.grid)], [40, css(c.accent, 0.13)]]) {
+      ctx.strokeStyle = col;
+      ctx.beginPath();
+      for (let x = 0; x < w; x += step) { ctx.moveTo(x + 0.5, 0); ctx.lineTo(x + 0.5, h); }
+      for (let y = 0; y < h; y += step) { ctx.moveTo(0, y + 0.5); ctx.lineTo(w, y + 0.5); }
+      ctx.stroke();
+    }
+    const win = 3.2, sweep = mod(t, win), bx = sweep / win * w, gap = 16;
+    const y0 = h * 0.64, A = h * 0.46;
+    ctx.beginPath();
+    let pen = false;
+    for (let x = 0; x <= w; x++) {
+      if (x > bx && x < bx + gap) { pen = false; continue; }
+      const s = (x <= bx ? t - sweep : t - sweep - win) + x / w * win;
+      const y = y0 - A * ecgWave(s);
+      pen ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+      pen = true;
+    }
+    ctx.strokeStyle = css(c.accent);
+    ctx.lineWidth = 1.7;
+    ctx.lineJoin = 'round';
+    ctx.stroke();
+    glowDot(ctx, bx, y0 - A * ecgWave(t), c.accent, 2.5);
+    const beat = gauss(frac(t / 0.833), 0.33, 0.05);
+    label(ctx, 'II   25 mm/s', 8, 12, css(c.muted));
+    label(ctx, '♥ 72 bpm', w - 8, 12, css(c.accent, 0.55 + 0.45 * beat), 'right', 11);
+  };
+
+  // PPG: IR and red pulse waveforms scrolling in from the right.
+  const ppgWave = (s) => {
+    const p = frac(s / 0.94);
+    return gauss(p, 0.16, 0.06) + 0.42 * gauss(p, 0.42, 0.08) - 0.05 * gauss(p, 0.33, 0.03) + 0.12 * Math.sin(TAU * s / 4.5);
+  };
+
+  DRAW.ppg = (ctx, w, h, t, c) => {
+    graticule(ctx, w, h, c, 21);
+    const win = 5;
+    const lanes = [[h * 0.4, h * 0.24, c.accent, 'IR'], [h * 0.8, h * 0.15, c.red, 'RED']];
+    for (const [y0, A, col, name] of lanes) {
+      ctx.beginPath();
+      let last = 0;
+      for (let x = 0; x <= w; x += 1.5) {
+        const y = y0 - A * (ppgWave(t - (1 - x / w) * win) - 0.45);
+        x ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+        last = y;
+      }
+      ctx.strokeStyle = css(col);
+      ctx.lineWidth = 1.6;
+      ctx.stroke();
+      glowDot(ctx, w - 3, last, col, 2.2);
+      label(ctx, name, 8, y0 - A * 0.85, css(col, 0.9), 'left', 9);
+    }
+    label(ctx, 'SpO₂ 98 %   ♥ 64', w - 8, 12, css(c.muted), 'right');
+  };
+
+  // AS7265x: 18 channels at their real wavelengths, cycling through samples.
+  const AS_NM = [410, 435, 460, 485, 510, 535, 560, 585, 610, 645, 680, 705, 730, 760, 810, 860, 900, 940];
+  const AS_CH = 'ABCDEFGHRISJTUVWKL';
+  const SPECTRA = [
+    ['daylight', (l) => 0.35 + 0.55 * gauss(l, 520, 150) - 0.14 * gauss(l, 760, 8)],
+    ['leaf', (l) => 0.06 + 0.12 * gauss(l, 550, 30) + 0.78 / (1 + Math.exp(-(l - 715) / 12))],
+    ['white LED', (l) => 0.03 + 0.85 * gauss(l, 452, 12) + 0.62 * gauss(l, 575, 55)],
+  ];
+  const waveRGB = (l) => {
+    let r = 0, g = 0, b = 0;
+    if (l < 440) { r = (440 - l) / 60; b = 1; }
+    else if (l < 490) { g = (l - 440) / 50; b = 1; }
+    else if (l < 510) { g = 1; b = (510 - l) / 20; }
+    else if (l < 580) { r = (l - 510) / 70; g = 1; }
+    else if (l < 645) { r = 1; g = (645 - l) / 65; }
+    else r = 1;
+    const f = l < 420 ? 0.3 + 0.7 * (l - 380) / 40 : 1;
+    return [r * 255 * f, g * 255 * f, b * 255 * f];
+  };
+
+  DRAW.spectro = (ctx, w, h, t, c) => {
+    const seg = 4.5, i = Math.floor(t / seg) % 3, f = frac(t / seg) * seg;
+    const b = clamp(f - (seg - 1), 0, 1), e = b * b * (3 - 2 * b);
+    const A = SPECTRA[i], B = SPECTRA[(i + 1) % 3];
+    const top = 26, bot = h - 30, n = AS_NM.length, cw = (w - 16) / n, bw = cw * 0.72;
+    ctx.strokeStyle = css(c.grid);
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    for (let k = 0; k <= 4; k++) {
+      const y = Math.round(bot - k * (bot - top) / 4) + 0.5;
+      ctx.moveTo(8, y); ctx.lineTo(w - 8, y);
+    }
+    ctx.stroke();
+    AS_NM.forEach((l, k) => {
+      const v = clamp((1 - e) * A[1](l) + e * B[1](l) + 0.015 * Math.sin(t * 9 + k * 2.1)
+        + 0.012 * (hash(k + Math.floor(t * 8)) - 0.5), 0.01, 1);
+      const col = l <= 700 ? waveRGB(l) : mix([200, 40, 40], c.muted, (l - 700) / 240);
+      const x = 8 + k * cw + (cw - bw) / 2, y = bot - v * (bot - top);
+      ctx.fillStyle = css(col, 0.85);
+      ctx.fillRect(x, y, bw, bot - y);
+      ctx.fillStyle = css(col);
+      ctx.fillRect(x, y, bw, 2);
+      if (cw >= 11) label(ctx, AS_CH[k], x + bw / 2, bot + 9, css(c.faint), 'center', 8);
+    });
+    label(ctx, '410', 8, h - 9, css(c.muted), 'left', 9);
+    label(ctx, '940 nm', w - 8, h - 9, css(c.muted), 'right', 9);
+    label(ctx, 'NIR →', 8 + 12 * cw, h - 9, css(c.muted), 'left', 9);
+    label(ctx, `AS7265x · ${(e < 0.5 ? A : B)[0]}`, 8, 12, css(c.muted));
+  };
+
+  // Thermal: an 80×60 frame with a person and a hot mug, ironbow palette.
+  const IRON = [[0, [0, 0, 12]], [0.2, [40, 0, 110]], [0.4, [150, 0, 140]], [0.58, [225, 50, 60]],
+    [0.74, [250, 130, 0]], [0.88, [255, 210, 40]], [1, [255, 255, 225]]];
+  const ironbow = (v) => {
+    for (let i = 1; i < IRON.length; i++) {
+      if (v <= IRON[i][0]) return mix(IRON[i - 1][1], IRON[i][1], (v - IRON[i - 1][0]) / (IRON[i][0] - IRON[i - 1][0]));
+    }
+    return IRON[IRON.length - 1][1];
+  };
+
+  DRAW.thermal = (ctx, w, h, t, c, s) => {
+    const W = 80, H = 60, TMIN = 18, TMAX = 42;
+    const d = pixels(s, W, H), pal = lut(s, c, 256, ironbow);
+    const px = 36 + 20 * Math.sin(t * 0.35), bob = Math.sin(t * 2.2) * 0.8;
+    let best = -Infinity, bx = 0, by = 0;
+    for (let y = 0; y < H; y++) {
+      for (let x = 0; x < W; x++) {
+        const hx = x - px, hy = y - (15 + bob);
+        const ux = (x - px) / 9, uy = (y - (38 + bob)) / 14;
+        const mx = x - 66, my = y - 47;
+        let T = 19.5 + 2.5 * (y / H) + 0.4 * Math.sin(x * 0.3 + y * 0.2)
+          + 14.5 * Math.exp(-(hx * hx + hy * hy) / 30)
+          + 11 * Math.exp(-(ux * ux + uy * uy) * 1.4)
+          + 32 * Math.exp(-(mx * mx * 0.5 + my * my * 0.3) / 6)
+          - 4 * Math.exp(-((x - 5) * (x - 5)) / 20);
+        T += (hash2(x, y + Math.floor(t * 9)) - 0.5) * 0.35;
+        const col = pal[(clamp((T - TMIN) / (TMAX - TMIN), 0, 1) * 255) | 0], o = (y * W + x) * 4;
+        d[o] = col[0]; d[o + 1] = col[1]; d[o + 2] = col[2]; d[o + 3] = 255;
+        if (T > best) { best = T; bx = x; by = y; }
+      }
+    }
+    s.bctx.putImageData(s.img, 0, 0);
+    const barW = 30, aw = w - barW - 12, ah = h - 12, sc = Math.min(aw / W, ah / H);
+    const iw = W * sc, ih = H * sc, ix = 6 + (aw - iw) / 2, iy = (h - ih) / 2;
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(s.buf, ix, iy, iw, ih);
+
+    const hx = ix + (bx + 0.5) * sc, hy = iy + (by + 0.5) * sc;
+    ctx.strokeStyle = 'rgba(255,255,255,.9)';
+    ctx.lineWidth = 1.2;
+    ctx.beginPath();
+    ctx.moveTo(hx - 8, hy); ctx.lineTo(hx - 3, hy);
+    ctx.moveTo(hx + 3, hy); ctx.lineTo(hx + 8, hy);
+    ctx.moveTo(hx, hy - 8); ctx.lineTo(hx, hy - 3);
+    ctx.moveTo(hx, hy + 3); ctx.lineTo(hx, hy + 8);
+    ctx.stroke();
+    label(ctx, `${best.toFixed(1)} °C`, Math.min(hx, ix + iw - 4), hy - 14, 'rgba(255,255,255,.95)', 'right');
+    label(ctx, 'FLIR E4 · 80×60', ix + 6, iy + 10, 'rgba(255,255,255,.8)', 'left', 9);
+
+    const gx = w - barW + 2, g = ctx.createLinearGradient(0, iy + ih, 0, iy);
+    IRON.forEach(([p, col]) => g.addColorStop(p, css(col)));
+    ctx.fillStyle = g;
+    ctx.fillRect(gx, iy, 7, ih);
+    label(ctx, `${TMAX}°`, gx + 10, iy + 5, css(c.muted), 'left', 9);
+    label(ctx, `${TMIN}°`, gx + 10, iy + ih - 5, css(c.muted), 'left', 9);
+  };
+
+  // Fourier: epicycles building up a square wave from odd harmonics.
+  DRAW.fourier = (ctx, w, h, t, c) => {
+    const N = 1 + (Math.floor(t / 2.4) % 7), R1 = h * 0.24, x0 = R1 * 1.3 + 10, y0 = h / 2 + 6, om = TAU / 3.2;
+    const val = (s) => {
+      let y = 0;
+      for (let k = 0; k < N; k++) y += (4 / (Math.PI * (2 * k + 1))) * Math.sin((2 * k + 1) * om * s);
+      return y;
+    };
+    let px = x0, py = y0;
+    for (let k = 0; k < N; k++) {
+      const n = 2 * k + 1, r = R1 * 4 / (Math.PI * n);
+      const nx = px + r * Math.cos(n * om * t), ny = py - r * Math.sin(n * om * t);
+      ctx.strokeStyle = css(c.faint, 0.8);
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.arc(px, py, r, 0, TAU);
+      ctx.stroke();
+      ctx.strokeStyle = css(c.ink, 0.8);
+      ctx.beginPath();
+      ctx.moveTo(px, py);
+      ctx.lineTo(nx, ny);
+      ctx.stroke();
+      px = nx; py = ny;
+    }
+    const xw = x0 + R1 * 1.3 + 14;
+    ctx.strokeStyle = css(c.muted, 0.6);
+    ctx.setLineDash([2, 3]);
+    ctx.beginPath();
+    ctx.moveTo(px, py);
+    ctx.lineTo(xw, py);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    glowDot(ctx, px, py, c.accent, 2.5);
+
+    const span = 6.4, X = (x) => t - (x - xw) / (w - xw) * span;
+    ctx.strokeStyle = css(c.faint, 0.8);
+    ctx.beginPath();
+    for (let x = xw; x <= w; x += 1) {
+      const y = y0 - R1 * Math.sign(Math.sin(om * X(x)));
+      x === xw ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+    ctx.strokeStyle = css(c.accent);
+    ctx.lineWidth = 1.7;
+    ctx.beginPath();
+    for (let x = xw; x <= w; x += 1) {
+      const y = y0 - R1 * val(X(x));
+      x === xw ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+    label(ctx, `${N} harmonic${N > 1 ? 's' : ''}`, 8, 12, css(c.muted));
+    label(ctx, 'square wave', w - 8, 12, css(c.muted), 'right');
+  };
+
+  // Waterfall: a little tune with bass, kick and hi-hat, newest row at the top.
+  DRAW.waterfall = (ctx, w, h, t, c, s) => {
+    const COLS = 96, ROWS = 56, dt = 0.055;
+    const d = pixels(s, COLS, ROWS);
+    const hi = c.dark ? WHITE : c.ink;
+    const pal = lut(s, c, 128, (v) => (v < 0.6 ? mix(c.screen, c.accent, v / 0.6) : mix(c.accent, hi, (v - 0.6) / 0.4)));
+    const spec = s.spec || (s.spec = new Float32Array(COLS));
+    const peak = (fc, a, sd) => {
+      for (let f = Math.max(0, Math.floor(fc - 3 * sd)); f <= Math.min(COLS - 1, Math.ceil(fc + 3 * sd)); f++) spec[f] += a * gauss(f, fc, sd);
+    };
+    const tq = Math.floor(t / dt);
+    for (let r = 0; r < ROWS; r++) {
+      const row = tq - r, tau = row * dt;
+      spec.fill(0);
+      const note = Math.floor(tau / 0.3), nph = frac(tau / 0.3);
+      const f0 = 7 * Math.pow(2, [0, 3, 5, 7, 10, 12, 15][Math.floor(hash(note) * 7)] / 12);
+      for (let k = 1; k <= 7; k++) peak(f0 * k, 0.9 * Math.exp(-nph * 2.2) / Math.pow(k, 0.7), 0.8);
+      const bar = Math.floor(tau / 1.2), bph = frac(tau / 1.2);
+      const fb = 3.5 * Math.pow(2, [0, 5, 7, 3][bar & 3] / 12);
+      for (let k = 1; k <= 3; k++) peak(fb * k, 0.8 * Math.exp(-bph * 1.5) / k, 0.7);
+      const kick = Math.exp(-frac(tau / 0.6) * 14), hat = Math.exp(-frac(tau / 0.3 + 0.5) * 22);
+      for (let f = 0; f < COLS; f++) {
+        const v = spec[f] + kick * 0.9 * Math.exp(-f / 7) + (f > 55 ? hat * 0.35 * hash2(f, row) : 0) + 0.07 * hash2(f * 1.3, row);
+        const col = pal[(clamp(v, 0, 1) * 127) | 0], o = (r * COLS + f) * 4;
+        d[o] = col[0]; d[o + 1] = col[1]; d[o + 2] = col[2]; d[o + 3] = 255;
+      }
+    }
+    s.bctx.putImageData(s.img, 0, 0);
+    ctx.imageSmoothingEnabled = true;
+    ctx.drawImage(s.buf, 0, 0, w, h);
+    label(ctx, 'time ↓', 8, 12, css(c.ink, 0.8));
+    label(ctx, 'freq →', w - 8, h - 10, css(c.ink, 0.8), 'right');
+  };
+
+  // k-Wave: a pulse from a transducer, reflected by a rigid wall and a soft floor (image sources).
+  const ricker = (x) => { const a = x * x; return (1 - 2 * a) * Math.exp(-a); };
+
+  DRAW.acoustic = (ctx, w, h, t, c, s) => {
+    const COLS = 120, ROWS = Math.max(24, Math.round(COLS * h / w));
+    const d = pixels(s, COLS, ROWS);
+    const pal = lut(s, c, 129, (v) => {
+      const u = v * 2 - 1;
+      return u >= 0 ? mix(c.screen, c.accent, Math.pow(u, 0.8)) : mix(c.screen, c.pal.gnss, Math.pow(-u, 0.8));
+    });
+    const sx = COLS * 0.2, sy = ROWS * 0.32, wallX = COLS * 0.84, floorY = ROWS * 0.86;
+    const srcs = [[sx, sy, 1], [2 * wallX - sx, sy, 1], [sx, 2 * floorY - sy, -1], [2 * wallX - sx, 2 * floorY - sy, -1]];
+    const rad = mod(t, 3.4) * 42;
+    const wall = mix(c.screen, c.faint, 0.45);
+    for (let y = 0; y < ROWS; y++) {
+      for (let x = 0; x < COLS; x++) {
+        const o = (y * COLS + x) * 4;
+        let col = wall;
+        if (x < wallX && y < floorY) {
+          let p = 0;
+          for (const [qx, qy, a] of srcs) {
+            const dist = Math.hypot(x - qx, y - qy), u = dist - rad;
+            if (u > -8 && u < 8) p += a * ricker(u / 2.2) / Math.sqrt(1 + dist * 0.12);
+          }
+          col = pal[(clamp(p * 1.6, -1, 1) * 64 + 64) | 0];
+        }
+        d[o] = col[0]; d[o + 1] = col[1]; d[o + 2] = col[2]; d[o + 3] = 255;
+      }
+    }
+    s.bctx.putImageData(s.img, 0, 0);
+    ctx.imageSmoothingEnabled = true;
+    ctx.drawImage(s.buf, 0, 0, w, h);
+    const X = w / COLS, Y = h / ROWS;
+    ctx.fillStyle = css(c.ink);
+    ctx.fillRect(sx * X - 3, sy * Y - 7, 6, 14);
+    label(ctx, 'k-Wave pulse-echo', 8, 12, css(c.muted));
+    label(ctx, 'wall', wallX * X + 4, 12, css(c.ink, 0.8), 'left', 9);
+  };
+
+  // Radiative balance: a day of solar flux and the lagging surface temperature.
+  const RAD = (() => {
+    const n = 288, T = new Float32Array(n), a = 0.9, b = 0.28, dtH = 24 / n;
+    let v = 0;
+    for (let day = 0; day < 8; day++) {
+      for (let i = 0; i < n; i++) {
+        const F = Math.max(0, Math.sin(Math.PI * (i * dtH - 6) / 12));
+        v += (a * F - b * v) * dtH;
+        if (day === 7) T[i] = v;
+      }
+    }
+    const lo = Math.min(...T), hi = Math.max(...T);
+    return T.map((x) => (x - lo) / (hi - lo));
+  })();
+
+  DRAW.radiative = (ctx, w, h, t, c) => {
+    const L = 10, Rr = w - 10, top = 28, bot = h - 22;
+    const X = (hr) => L + hr / 24 * (Rr - L);
+    const F = (hr) => Math.max(0, Math.sin(Math.PI * (hr - 6) / 12));
+    const T = (hr) => RAD[Math.min(RAD.length - 1, Math.floor(hr / 24 * RAD.length))];
+    const now = mod(t * 1.6, 24), sun = c.pal.radio;
+    ctx.fillStyle = css(c.ink, 0.045);
+    for (const [a, b] of c.dark ? [[6, 18]] : [[0, 6], [18, 24]]) ctx.fillRect(X(a), top - 6, X(b) - X(a), bot - top + 6);
+
+    ctx.beginPath();
+    ctx.moveTo(X(0), bot);
+    for (let hr = 0; hr <= 24; hr += 0.2) ctx.lineTo(X(hr), bot - F(hr) * (bot - top));
+    ctx.lineTo(X(24), bot);
+    ctx.closePath();
+    ctx.fillStyle = css(sun, 0.16);
+    ctx.fill();
+    ctx.strokeStyle = css(sun, 0.8);
+    ctx.lineWidth = 1.3;
+    ctx.stroke();
+
+    const TY = (hr) => bot - (0.06 + 0.86 * T(hr)) * (bot - top);
+    for (const [end, col, lw] of [[24, css(c.accent, 0.3), 1.2], [now, css(c.accent), 2]]) {
+      ctx.beginPath();
+      for (let hr = 0; hr <= end; hr += 0.1) hr ? ctx.lineTo(X(hr), TY(hr)) : ctx.moveTo(X(hr), TY(hr));
+      ctx.strokeStyle = col;
+      ctx.lineWidth = lw;
+      ctx.stroke();
+    }
+    ctx.strokeStyle = css(c.ink, 0.3);
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(X(now), top - 6);
+    ctx.lineTo(X(now), bot);
+    ctx.stroke();
+    if (F(now) > 0) glowDot(ctx, X(now), bot - F(now) * (bot - top), sun, 4);
+    glowDot(ctx, X(now), TY(now), c.accent, 2.5);
+
+    for (const hr of [0, 6, 12, 18, 24]) label(ctx, String(hr).padStart(2, '0'), X(hr), h - 10, css(c.muted), hr ? hr === 24 ? 'right' : 'center' : 'left', 9);
+    const hh = String(Math.floor(now)).padStart(2, '0'), mm = String(Math.floor(frac(now) * 60)).padStart(2, '0');
+    label(ctx, 'sun', 8, 12, css(sun));
+    label(ctx, 'T surface', 36, 12, css(c.accent));
+    label(ctx, `${hh}:${mm}  ${(4 + 30 * T(now)).toFixed(1)} °C`, w - 8, 12, css(c.muted), 'right');
+  };
+
+  // WS2812B: a 30×16 matrix, plasma then Christmas twinkle.
+  const hsv = (hu, sa, va) => {
+    const i = Math.floor(hu * 6), f = hu * 6 - i, p = va * (1 - sa), q = va * (1 - f * sa), u = va * (1 - (1 - f) * sa);
+    return [[va, u, p], [q, va, p], [p, va, u], [p, q, va], [u, p, va], [va, p, q]][mod(i, 6)].map((x) => x * 255);
+  };
+  const XMAS = [[255, 40, 40], [40, 230, 80], [255, 240, 210], [255, 190, 50]];
+
+  DRAW.leds = (ctx, w, h, t) => {
+    const NX = 30, NY = 16, cell = Math.min((w - 16) / NX, (h - 16) / NY);
+    const pw = cell * NX, ph = cell * NY, ox = (w - pw) / 2, oy = (h - ph) / 2;
+    ctx.fillStyle = '#050606';
+    roundRect(ctx, ox - 5, oy - 5, pw + 10, ph + 10, 6);
+    ctx.fill();
+    const plasma = Math.floor(t / 9) % 2 === 0, tick = Math.floor(t * 5);
+    for (let y = 0; y < NY; y++) {
+      for (let x = 0; x < NX; x++) {
+        let col;
+        if (plasma) {
+          const v = Math.sin(x * 0.32 + t) + Math.sin(y * 0.45 - t * 1.2) + Math.sin((x + y) * 0.22 + t * 0.6)
+            + Math.sin(Math.hypot(x - 15 + 6 * Math.sin(t * 0.3), y - 8) * 0.55 - t * 1.8);
+          col = hsv(frac(v / 8 + t * 0.05), 1, 0.95);
+        } else {
+          const lit = hash2(x + y * 31, tick) > 0.55;
+          const base = XMAS[Math.floor(hash2(x * 7 + y, 3) * 4)];
+          col = lit ? mix([20, 20, 20], base, 0.5 + 0.5 * hash2(x, y + tick)) : [26, 26, 26];
+        }
+        const cx = ox + (x + 0.5) * cell, cy = oy + (y + 0.5) * cell;
+        ctx.fillStyle = css(col, 0.22);
+        ctx.beginPath();
+        ctx.arc(cx, cy, cell * 0.55, 0, TAU);
+        ctx.fill();
+        ctx.fillStyle = css(col);
+        ctx.beginPath();
+        ctx.arc(cx, cy, cell * 0.3, 0, TAU);
+        ctx.fill();
+      }
+    }
+  };
+
+  // PCB: a TSSOP20 part fanned out to two headers, with signals running along the traces.
+  DRAW.pcb = (ctx, w, h, t, c) => {
+    const mask = c.dark ? [12, 52, 33] : [24, 92, 56];
+    const copper = mix(mask, [220, 160, 80], 0.45), gold = [222, 182, 92], silk = [235, 240, 235];
+    ctx.fillStyle = css(mask);
+    roundRect(ctx, 4, 4, w - 8, h - 8, 8);
+    ctx.fill();
+    const N = 10, hy0 = 24, hy1 = h - 24, hp = (hy1 - hy0) / (N - 1);
+    const pp = Math.min(hp * 0.5, 7), cw = clamp(w * 0.17, 34, 56), ch = pp * (N - 1) + 14;
+    const cx = w / 2, cy = h / 2;
+    const traces = [];
+    for (const side of [-1, 1]) {
+      for (let i = 0; i < N; i++) {
+        const ya = cy - pp * (N - 1) / 2 + i * pp, yb = hy0 + i * hp;
+        const xa = cx + side * (cw / 2 + 5), xs = cx + side * (cw / 2 + 12), xb = side < 0 ? 20 : w - 20;
+        traces.push([[xa, ya], [xs, ya], [xs + side * Math.abs(yb - ya), yb], [xb, yb]]);
+      }
+    }
+    ctx.strokeStyle = css(copper);
+    ctx.lineWidth = 2.2;
+    ctx.lineJoin = 'round';
+    for (const tr of traces) {
+      ctx.beginPath();
+      tr.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)));
+      ctx.stroke();
+    }
+    for (const tr of traces) {
+      const [x, y] = tr[3];
+      ctx.fillStyle = css(gold);
+      ctx.beginPath();
+      ctx.arc(x, y, 3.8, 0, TAU);
+      ctx.fill();
+      ctx.fillStyle = css(mask);
+      ctx.beginPath();
+      ctx.arc(x, y, 1.5, 0, TAU);
+      ctx.fill();
+    }
+    ctx.fillStyle = css(gold);
+    for (const tr of traces) {
+      const [x, y] = tr[0];
+      ctx.fillRect(x < cx ? x : x - 6, y - 1.6, 6, 3.2);
+    }
+    ctx.fillStyle = '#141414';
+    ctx.fillRect(cx - cw / 2, cy - ch / 2, cw, ch);
+    ctx.fillStyle = css(silk, 0.5);
+    ctx.beginPath();
+    ctx.arc(cx - cw / 2 + 5, cy - ch / 2 + 5, 1.8, 0, TAU);
+    ctx.fill();
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(-Math.PI / 2);
+    label(ctx, 'LPC824', 0, 0, css(silk, 0.75), 'center', 9);
+    ctx.restore();
+    label(ctx, 'U1', cx, cy - ch / 2 - 8, css(silk, 0.8), 'center', 9);
+    label(ctx, 'J1', 20, 12, css(silk, 0.8), 'center', 9);
+    label(ctx, 'J2', w - 20, 12, css(silk, 0.8), 'center', 9);
+
+    traces.forEach((tr, j) => {
+      if (hash(j + 3) < 0.35) return;
+      const lens = [];
+      let total = 0;
+      for (let i = 1; i < tr.length; i++) {
+        const l = Math.hypot(tr[i][0] - tr[i - 1][0], tr[i][1] - tr[i - 1][1]);
+        lens.push(l);
+        total += l;
+      }
+      let pos = frac(t * 0.35 + hash(j)) * total;
+      if (hash(j + 9) > 0.5) pos = total - pos;
+      for (let i = 0; i < lens.length; i++) {
+        if (pos <= lens[i] || i === lens.length - 1) {
+          const u = lens[i] ? pos / lens[i] : 0;
+          glowDot(ctx, tr[i][0] + (tr[i + 1][0] - tr[i][0]) * u, tr[i][1] + (tr[i + 1][1] - tr[i][1]) * u, c.accent, 1.8);
+          break;
+        }
+        pos -= lens[i];
+      }
+    });
+  };
+
+  // JBDiff: hex rows scrolling up, changed bytes highlighted.
+  DRAW.hexdiff = (ctx, w, h, t, c) => {
+    const fs = w < 300 ? 10 : 11;
+    ctx.font = `${fs}px ${MONO}`;
+    const chW = ctx.measureText('0').width, lh = fs * 1.6, top = 28;
+    const bpr = clamp(Math.floor((w - 16 - chW * 6) / (chW * 3)), 4, 16);
+    const rows = Math.ceil((h - top) / lh) + 1, pos = t * 1.1, base = Math.floor(pos), fr = pos - base;
+    let changedCount = 0;
+    ctx.strokeStyle = css(c.grid);
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(0, top - 3.5);
+    ctx.lineTo(w, top - 3.5);
+    ctx.stroke();
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(0, top - 3, w, h - top + 3);
+    ctx.clip();
+    ctx.textBaseline = 'middle';
+    ctx.textAlign = 'left';
+    for (let r = 0; r < rows; r++) {
+      const row = base + r, y = top + (r - fr) * lh + lh / 2;
+      ctx.fillStyle = css(c.faint);
+      ctx.fillText(((row * bpr) & 0xffff).toString(16).padStart(4, '0'), 8, y);
+      for (let k = 0; k < bpr; k++) {
+        const x = 8 + chW * 6 + k * chW * 3;
+        const changed = hash2(row * 1.7 + 3, k * 2.3) < 0.09;
+        if (changed) {
+          changedCount++;
+          ctx.fillStyle = css(c.accent, 0.22);
+          ctx.fillRect(x - 2, y - lh / 2 + 2, chW * 2 + 4, lh - 4);
+        }
+        ctx.fillStyle = changed ? css(c.accent) : css(c.muted);
+        ctx.fillText(Math.floor(hash2(row, k) * 256).toString(16).toUpperCase().padStart(2, '0'), x, y);
+      }
+    }
+    ctx.restore();
+    const fade = ctx.createLinearGradient(0, top - 3, 0, top + lh);
+    fade.addColorStop(0, css(c.screen));
+    fade.addColorStop(1, css(c.screen, 0));
+    ctx.fillStyle = fade;
+    ctx.fillRect(0, top - 3, w, lh + 3);
+    label(ctx, 'old.bin → new.bin', 8, 12, css(c.ink, 0.8));
+    label(ctx, `Δ ${changedCount} B`, w - 8, 12, css(c.accent), 'right');
+  };
+
+  // Galway: tide curve with night shading, sun and moon transits.
+  DRAW.tide = (ctx, w, h, t, c) => {
+    const span = 36, now = t * 1.1 + 30, x0h = now - span * 0.45;
+    const X = (hr) => (hr - x0h) / span * w;
+    const top = 30, bot = h - 22;
+    const level = (hr) => 2.8 + 2.1 * Math.cos(TAU * (hr - 3) / 12.42) * (0.78 + 0.22 * Math.cos(TAU * hr / 354));
+    const Y = (m) => bot - m / 5.6 * (bot - top);
+    const [b0, b1] = c.dark ? [7, 19.5] : [19.5, 31];
+    ctx.fillStyle = css(c.ink, c.dark ? 0.045 : 0.05);
+    for (let dd = Math.floor(x0h / 24) - 1; dd * 24 < x0h + span; dd++) {
+      const a = X(dd * 24 + b0), b = X(dd * 24 + b1);
+      ctx.fillRect(a, top - 6, b - a, bot - top + 6);
+    }
+    ctx.beginPath();
+    ctx.moveTo(0, bot);
+    for (let x = 0; x <= w; x += 2) ctx.lineTo(x, Y(level(x0h + x / w * span)));
+    ctx.lineTo(w, bot);
+    ctx.closePath();
+    ctx.fillStyle = css(c.accent, 0.2);
+    ctx.fill();
+    ctx.beginPath();
+    for (let x = 0; x <= w; x += 2) {
+      const y = Y(level(x0h + x / w * span));
+      x ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+    }
+    ctx.strokeStyle = css(c.accent);
+    ctx.lineWidth = 1.6;
+    ctx.stroke();
+
+    for (let dd = Math.floor(x0h / 24) - 1; dd * 24 < x0h + span + 24; dd++) {
+      const xs = X(dd * 24 + 13.3);
+      if (xs > -10 && xs < w + 10) glowDot(ctx, xs, 14, c.pal.radio, 3.5);
+    }
+    for (let k = Math.floor(x0h / 24.84) - 1; k * 24.84 < x0h + span + 25; k++) {
+      const xm = X(k * 24.84 + 5);
+      if (xm < -10 || xm > w + 10) continue;
+      ctx.fillStyle = css(c.ink, 0.85);
+      ctx.beginPath();
+      ctx.arc(xm, 14, 4.5, 0, TAU);
+      ctx.fill();
+      ctx.fillStyle = css(c.screen);
+      ctx.beginPath();
+      ctx.arc(xm + 2.2, 12.8, 4, 0, TAU);
+      ctx.fill();
+    }
+    for (let hr = Math.ceil(x0h / 6) * 6; hr < x0h + span; hr += 6) {
+      label(ctx, String(mod(hr, 24)).padStart(2, '0'), X(hr), h - 10, css(c.muted), 'center', 9);
+    }
+    const xn = X(now), ln = level(now), rising = level(now + 0.1) > ln;
+    ctx.strokeStyle = css(c.ink, 0.35);
+    ctx.lineWidth = 1;
+    ctx.setLineDash([3, 3]);
+    ctx.beginPath();
+    ctx.moveTo(xn, top - 6);
+    ctx.lineTo(xn, bot);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    glowDot(ctx, xn, Y(ln), c.accent, 3);
+    label(ctx, `${ln.toFixed(1)} m ${rising ? '▲' : '▼'}`, xn + 8, Y(ln) - 12, css(c.ink, 0.9));
+  };
+
+  // Engine: size canvases, read theme colours. Card drawings stay still until hovered
+  // for a second (or tapped on touch screens); only the hero scope runs on its own.
+  const lightMQ = matchMedia('(prefers-color-scheme: light)');
+  const motionMQ = matchMedia('(prefers-reduced-motion: reduce)');
+  const TOKENS = ['ink', 'muted', 'faint', 'grid', 'screen', 'red'];
+  const PAL = ['radio', 'gnss', 'body', 'light', 'signal', 'make', 'galway'];
+  const STILL_T = 6.2;
+
+  function colours(el) {
+    const cs = getComputedStyle(el), get = (n) => parse(cs.getPropertyValue('--' + n));
+    const c = { accent: get('accent'), dark: !lightMQ.matches, pal: {} };
+    TOKENS.forEach((n) => (c[n] = get(n)));
+    PAL.forEach((n) => (c.pal[n] = get(n)));
+    c.key = c.accent.join() + '/' + c.screen.join();
+    return c;
+  }
+
+  const items = [...document.querySelectorAll('canvas[data-draw]')]
+    .map((el) => ({ el, ctx: el.getContext('2d'), fn: DRAW[el.dataset.draw], s: {}, w: 0, h: 0, on: false, c: null,
+      t: STILL_T, live: !el.closest('.card') }))
+    .filter((it) => it.ctx && it.fn);
+  const byEl = new Map(items.map((it) => [it.el, it]));
+
+  function resize(it) {
+    const r = it.el.getBoundingClientRect(), dpr = Math.min(window.devicePixelRatio || 1, 2);
+    it.w = r.width;
+    it.h = r.height;
+    it.el.width = Math.max(1, Math.round(r.width * dpr));
+    it.el.height = Math.max(1, Math.round(r.height * dpr));
+    it.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function draw(it, t) {
+    if (!it.w || !it.h || !it.fn) return;
+    if (!it.c) it.c = colours(it.el);
+    it.ctx.clearRect(0, 0, it.w, it.h);
+    it.ctx.save();
+    try {
+      it.fn(it.ctx, it.w, it.h, t, it.c, it.s);
+    } catch (err) {
+      it.fn = null;
+      console.error(`drawing "${it.el.dataset.draw}" failed`, err);
+    }
+    it.ctx.restore();
+  }
+
+  // Each drawing keeps its own clock, so it resumes where it paused.
+  let raf = 0, last = 0;
+
+  function frame(now) {
+    raf = requestAnimationFrame(frame);
+    if (now - last < 30) return;
+    const dt = Math.min(0.1, (now - last) / 1000);
+    last = now;
+    for (const it of items) {
+      if (it.live && it.on) {
+        it.t += dt;
+        draw(it, it.t);
+      }
+    }
+  }
+
+  function start() {
+    cancelAnimationFrame(raf);
+    if (motionMQ.matches) items.forEach((it) => draw(it, it.t));
+    else raf = requestAnimationFrame(frame);
+  }
+
+  for (const it of items) {
+    const card = it.el.closest('.card');
+    if (!card) continue;
+    let timer = 0;
+    const run = (on) => {
+      clearTimeout(timer);
+      it.live = on;
+      card.classList.toggle('live', on);
+    };
+    const arm = () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => run(true), 1000);
+    };
+    card.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') arm(); });
+    card.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') run(false); });
+    card.addEventListener('focusin', arm);
+    card.addEventListener('focusout', (e) => { if (!card.contains(e.relatedTarget)) run(false); });
+    it.el.addEventListener('pointerup', (e) => { if (e.pointerType !== 'mouse') run(!it.live); });
+  }
+
+  const ro = new ResizeObserver((entries) => {
+    for (const e of entries) {
+      const it = byEl.get(e.target);
+      resize(it);
+      draw(it, it.t);
+    }
+  });
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) byEl.get(e.target).on = e.isIntersecting;
+  }, { rootMargin: '100px' });
+  items.forEach((it) => { ro.observe(it.el); io.observe(it.el); });
+
+  lightMQ.addEventListener('change', () => {
+    items.forEach((it) => { it.c = null; draw(it, it.t); });
+  });
+  motionMQ.addEventListener('change', start);
+  start();
+})();
+</script>
+</body>
+</html>
